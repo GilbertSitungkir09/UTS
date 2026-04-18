@@ -10,7 +10,11 @@
     
     <style>
         :root { --primary: #1e3a8a; --accent: #dc2626; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #1e293b; line-height: 1.6; overflow-x: hidden; }
+        
+        /* Memastikan body tidak goyang */
+        html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #1e293b; line-height: 1.6; }
+        
         .container { max-width: 800px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
         
         .header { text-align: center; padding: 25px 15px; background: var(--primary); color: white; border-radius: 0 0 25px 25px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
@@ -29,33 +33,39 @@
         .semester-section { margin-bottom: 40px; }
         .semester-title { font-size: 18px; font-weight: 800; margin-bottom: 12px; color: var(--primary); border-left: 6px solid var(--primary); padding-left: 12px; }
         
-        /* FIX: SISTEM GESER TABEL */
-        .table-container { 
-            background: white; 
-            border-radius: 12px; 
-            overflow-x: auto; /* Mengaktifkan fungsi geser horizontal */
-            -webkit-overflow-scrolling: touch; /* Membuat geseran halus di iPhone */
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); 
-            border: 2px solid var(--border-color); 
-            margin-bottom: 10px;
+        /* FIX TOTAL SISTEM GESER */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto; /* Aktifkan geser */
+            display: block;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            -webkit-overflow-scrolling: touch; /* Geser halus iPhone */
         }
 
-        /* Memberikan petunjuk bahwa tabel bisa digeser */
-        .scroll-hint { font-size: 10px; color: #94a3b8; text-align: right; margin-bottom: 5px; font-style: italic; }
-
-        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 600px; } /* Min-width memastikan tabel tidak gepeng */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            min-width: 650px; /* Paksa tabel tetap lebar agar bisa digeser */
+            table-layout: fixed; /* Kunci ukuran kolom */
+        }
         
         th { background: var(--primary); padding: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
-        td { padding: 12px; border: 1px solid var(--border-color); font-size: 13px; vertical-align: middle; }
+        td { padding: 12px; border: 1px solid var(--border-color); font-size: 13px; vertical-align: middle; word-wrap: break-word; }
         
-        .date-cell { font-weight: 700; color: #334155; width: 150px; background: #f8fafc; }
+        .date-cell { font-weight: 700; color: #334155; width: 160px; background: #f8fafc; }
         .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 700; font-size: 12px; text-align: center; width: 110px; }
-        .subject-cell { font-weight: 700; color: #1e40af; background: #ffffff; min-width: 200px; }
+        .subject-cell { font-weight: 700; color: #1e40af; background: #ffffff; }
 
+        .scroll-hint { font-size: 10px; color: #94a3b8; text-align: right; margin-bottom: 5px; font-style: italic; }
         .motivation-box { text-align: center; margin-top: 30px; padding: 20px; border-top: 2px dashed var(--border-color); font-style: italic; color: #475569; font-size: 13px; }
         
         .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; }
-        .footer { text-align: center; font-size: 11px; color: #94a3b8; padding: 20px 0 100px; }
+        
+        /* Footer Bersih Tanpa Copyright */
+        .footer { text-align: center; padding: 20px 0 100px; }
     </style>
 </head>
 <body>
@@ -78,10 +88,10 @@
         <div class="semester-title">📚 SEMESTER II</div>
         <div class="today-alert" id="alert-sem2">
             <div class="icon">📖</div>
-            <div class="info"><b>Ujian Hari Ini (Semester II):</b> <span id="text-sem2">Tidak ada jadwal.</span></div>
+            <div class="info"><b>Ujian Hari Ini:</b> <span id="text-sem2">Tidak ada jadwal.</span></div>
         </div>
-        <div class="scroll-hint">Geser tabel ke samping untuk melihat detail →</div>
-        <div class="table-container">
+        <div class="scroll-hint">Geser tabel ke samping →</div>
+        <div class="table-wrapper">
             <table>
                 <thead><tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
                 <tbody id="body-sem2"></tbody>
@@ -93,10 +103,10 @@
         <div class="semester-title">📚 SEMESTER IV</div>
         <div class="today-alert" id="alert-sem4">
             <div class="icon">📖</div>
-            <div class="info"><b>Ujian Hari Ini (Semester IV):</b> <span id="text-sem4">Tidak ada jadwal.</span></div>
+            <div class="info"><b>Ujian Hari Ini:</b> <span id="text-sem4">Tidak ada jadwal.</span></div>
         </div>
-        <div class="scroll-hint">Geser tabel ke samping untuk melihat detail →</div>
-        <div class="table-container">
+        <div class="scroll-hint">Geser tabel ke samping →</div>
+        <div class="table-wrapper">
             <table>
                 <thead><tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
                 <tbody id="body-sem4"></tbody>
@@ -108,10 +118,10 @@
         <div class="semester-title">📚 SEMESTER VI</div>
         <div class="today-alert" id="alert-sem6">
             <div class="icon">📖</div>
-            <div class="info"><b>Ujian Hari Ini (Semester VI):</b> <span id="text-sem6">Tidak ada jadwal.</span></div>
+            <div class="info"><b>Ujian Hari Ini:</b> <span id="text-sem6">Tidak ada jadwal.</span></div>
         </div>
-        <div class="scroll-hint">Geser tabel ke samping untuk melihat detail →</div>
-        <div class="table-container">
+        <div class="scroll-hint">Geser tabel ke samping →</div>
+        <div class="table-wrapper">
             <table>
                 <thead><tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
                 <tbody id="body-sem6"></tbody>
@@ -128,9 +138,7 @@
         <div id="container-d0335f1a099b9842202fbcf0493e76cc"></div>
     </div>
 
-    <div class="footer">
-        &copy; 2026 Academic Portal Hukum.
-    </div>
+    <div class="footer"></div>
 </div>
 
 <script type='text/javascript' src='https://pl29170546.profitablecpmratenetwork.com/31/90/9e/31909e2c4790b086ed9fe5590abcfe13.js'></script>
@@ -176,7 +184,6 @@
         Object.keys(jadwalData).forEach(sem => {
             const tbody = document.getElementById(`body-${sem}`);
             const data = jadwalData[sem];
-            
             for (let i = 0; i < data.length; i++) {
                 let row = `<tr>`;
                 if (i > 0 && data[i].tgl === data[i-1].tgl) { } else {
@@ -203,9 +210,6 @@
             if (matching.length > 0) {
                 alertElem.innerHTML = matching.map(m => `<b>${m.matkul}</b> (${m.jam})`).join(" & ");
                 document.getElementById(`alert-${sem}`).style.background = "#dcfce7";
-            } else {
-                alertElem.innerText = "Tidak ada jadwal ujian hari ini.";
-                document.getElementById(`alert-${sem}`).style.background = "#fffbeb";
             }
         });
     }
