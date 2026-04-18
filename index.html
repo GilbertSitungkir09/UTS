@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi Jadwal Kuliah</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --primary: #4f46e5; --accent: #f43f5e; --bg: #f8fafc; --white: #ffffff; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #1e293b; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        .header { text-align: center; padding: 40px 0 20px; }
+        .header h1 { font-size: 28px; font-weight: 800; color: var(--primary); margin: 0; }
+        
+        /* SLOT IKLAN NATIVE */
+        .ad-slot { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin: 20px 0; min-height: 100px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+        /* JADWAL HARI INI */
+        .today-card { background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: white; border-radius: 20px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4); }
+        .today-card h2 { margin: 0 0 10px 0; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+        .today-info { font-size: 14px; opacity: 0.9; margin-bottom: 15px; display: block;}
+        .today-schedule-item { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #10b981; }
+
+        /* TABEL SEMESTER */
+        .semester-section { margin-bottom: 40px; }
+        .semester-title { font-size: 20px; font-weight: 800; margin-bottom: 15px; border-left: 5px solid var(--primary); padding-left: 15px; color: #0f172a; }
+        
+        .table-container { background: white; border-radius: 16px; overflow-x: auto; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 500px; }
+        th { background: #f1f5f9; padding: 15px; font-size: 12px; font-weight: 700; text-transform: uppercase; color: #64748b; }
+        td { padding: 15px; border-top: 1px solid #f1f5f9; font-size: 14px; }
+        
+        .day-label { font-weight: 700; color: var(--primary); }
+        .time-label { color: #64748b; font-weight: 600; font-size: 12px; }
+        .footer { text-align: center; font-size: 11px; color: #94a3b8; padding-bottom: 50px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Portal Jadwal Akademik</h1>
+        <p>Akses cepat jadwal kuliah semester aktif</p>
+    </div>
+
+    <div class="ad-slot">
+        <div id="container-2731e2588d7455b7e18439b8fa633090"></div>
+        <script async="async" data-cfasync="false" src="https://pl29170548.profitablecpmratenetwork.com/2731e2588d7455b7e18439b8fa633090/invoke.js"></script>
+    </div>
+
+    <div id="today-container" class="today-card">
+        <h2 id="current-day-text">📅 Memuat jadwal...</h2>
+        <span class="today-info" id="current-time-text">--:--</span>
+        <div id="today-list"></div>
+    </div>
+
+    <div class="semester-section">
+        <div class="semester-title">Semester 2</div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Hari</th><th>Jam</th><th>Mata Kuliah / Kegiatan</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="day-label">Senin</td><td class="time-label">08:00 - 10:00</td><td>Algoritma & Pemrograman II</td></tr>
+                    <tr><td class="day-label">Selasa</td><td class="time-label">10:30 - 12:30</td><td>Matematika Diskrit</td></tr>
+                    <tr><td class="day-label">Rabu</td><td class="time-label">13:00 - 15:00</td><td>Bahasa Inggris Teknik</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="ad-slot" style="min-height: 150px;">
+        <p style="font-size: 10px; color: #ccc;">PROMOTED CONTENT</p>
+    </div>
+
+    <div class="semester-section">
+        <div class="semester-title">Semester 4</div>
+        <div class="table-container">
+            <table>
+                <thead><tr><th>Hari</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
+                <tbody>
+                    <tr><td class="day-label">Senin</td><td class="time-label">10:00 - 12:00</td><td>Basis Data Terdistribusi</td></tr>
+                    <tr><td class="day-label">Kamis</td><td class="time-label">08:00 - 10:30</td><td>Jaringan Komputer Lanjut</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="semester-section">
+        <div class="semester-title">Semester 6</div>
+        <div class="table-container">
+            <table>
+                <thead><tr><th>Hari</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
+                <tbody>
+                    <tr><td class="day-label">Selasa</td><td class="time-label">08:00 - 11:00</td><td>Kecerdasan Buatan (AI)</td></tr>
+                    <tr><td class="day-label">Jumat</td><td class="time-label">14:00 - 16:00</td><td>Etika Profesi IT</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Academic Schedule System. <br>
+        Informasi jadwal otomatis berdasarkan waktu sistem perangkat.
+    </div>
+</div>
+
+<script src="https://pl29170546.profitablecpmratenetwork.com/31/90/9e/31909e2c4790b086ed9fe5590abcfe13.js"></script>
+
+<script>
+    // DATA JADWAL (Sesuaikan dengan gambar 1000606387.jpg)
+    const dataJadwal = [
+        { hari: "Minggu", matkul: "Libur Akhir Pekan", jam: "-" },
+        { hari: "Senin", matkul: "Algoritma II & Basis Data", jam: "08:00 - 12:00" },
+        { hari: "Selasa", matkul: "Matematika Diskrit & AI", jam: "09:00 - 14:00" },
+        { hari: "Rabu", matkul: "Bahasa Inggris & Web Dev", jam: "08:00 - 11:00" },
+        { hari: "Kamis", matkul: "Jaringan Komputer", jam: "10:00 - 12:00" },
+        { hari: "Jumat", matkul: "Etika Profesi & Agama", jam: "08:00 - 10:00" },
+        { hari: "Sabtu", matkul: "Workshop Kampus", jam: "09:00 - 11:00" }
+    ];
+
+    function updateTodaySchedule() {
+        const d = new Date();
+        const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        const todayName = days[d.getDay()];
+        
+        // Tampilkan jam sekarang
+        const timeString = d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+        document.getElementById('current-time-text').innerText = `Waktu sekarang: ${timeString} WIB`;
+        
+        document.getElementById('current-day-text').innerText = `📅 Hari Ini: ${todayName}`;
+        
+        const scheduleToday = dataJadwal.find(item => item.hari === todayName);
+        const listContainer = document.getElementById('today-list');
+        
+        if (scheduleToday) {
+            listContainer.innerHTML = `
+                <div class="today-schedule-item">
+                    <span><strong>${scheduleToday.matkul}</strong></span>
+                    <span class="time-label" style="color: white; opacity: 0.9;">${scheduleToday.jam}</span>
+                </div>
+            `;
+        }
+    }
+
+    // Update setiap menit agar jam terus berjalan
+    setInterval(updateTodaySchedule, 60000);
+    window.onload = updateTodaySchedule;
+</script>
+
+</body>
+</html>
