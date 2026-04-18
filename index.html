@@ -9,70 +9,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        :root { --primary: #1e3a8a; --accent: #dc2626; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; }
+        :root { --primary: #1e3a8a; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; }
         
-        /* Memastikan body tidak goyang */
         html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #1e293b; line-height: 1.6; }
         
         .container { max-width: 800px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
         
-        .header { text-align: center; padding: 25px 15px; background: var(--primary); color: white; border-radius: 0 0 25px 25px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .header h1 { font-size: 20px; font-weight: 800; margin: 0; letter-spacing: 0.5px; }
+        .header { text-align: center; padding: 25px 15px; background: var(--primary); color: white; border-radius: 0 0 25px 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header h1 { font-size: 18px; font-weight: 800; margin: 0; letter-spacing: 0.5px; }
         
-        .live-clock-box { text-align: center; background: #ffffff; padding: 12px; border-radius: 12px; margin-bottom: 15px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        /* JARAK ANTAR ELEMEN ATAS */
+        .live-clock-box { text-align: center; background: #ffffff; padding: 12px; border-radius: 12px; margin-bottom: 25px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .live-clock-box b { color: var(--primary); font-size: 15px; font-weight: 800; }
 
-        .nb-header { background: #fff1f2; color: #be123c; padding: 10px; border-radius: 10px; font-size: 11px; font-weight: 700; border: 1px solid #fee2e2; margin: 10px auto; text-align: center; }
+        .nb-header { background: #fff1f2; color: #be123c; padding: 12px; border-radius: 10px; font-size: 11px; font-weight: 700; border: 1px solid #fee2e2; margin: 25px auto; text-align: center; line-height: 1.4; }
 
-        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 12px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
         .today-alert .icon { font-size: 20px; }
         .today-alert .info b { color: #92400e; display: block; font-size: 11px; text-transform: uppercase; }
         .today-alert .info span { font-size: 13px; font-weight: 700; color: #1e293b; }
 
-        .semester-section { margin-bottom: 40px; }
-        .semester-title { font-size: 18px; font-weight: 800; margin-bottom: 12px; color: var(--primary); border-left: 6px solid var(--primary); padding-left: 12px; }
+        .semester-section { margin-top: 30px; margin-bottom: 50px; }
+        .semester-title { font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; gap: 8px; }
         
-        /* FIX TOTAL SISTEM GESER */
+        /* TABEL DIPERKECIL & SISTEM GESER */
         .table-wrapper {
             width: 100%;
-            overflow-x: auto; /* Aktifkan geser */
+            overflow-x: auto;
             display: block;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
             background: white;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-            -webkit-overflow-scrolling: touch; /* Geser halus iPhone */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            -webkit-overflow-scrolling: touch;
         }
 
         table { 
             width: 100%; 
             border-collapse: collapse; 
-            min-width: 650px; /* Paksa tabel tetap lebar agar bisa digeser */
-            table-layout: fixed; /* Kunci ukuran kolom */
+            min-width: 580px; /* Ukuran diperkecil dari sebelumnya */
+            table-layout: fixed; 
         }
         
-        th { background: var(--primary); padding: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
-        td { padding: 12px; border: 1px solid var(--border-color); font-size: 13px; vertical-align: middle; word-wrap: break-word; }
+        th { background: var(--primary); padding: 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
+        td { padding: 10px; border: 1px solid var(--border-color); font-size: 12px; vertical-align: middle; word-wrap: break-word; }
         
-        .date-cell { font-weight: 700; color: #334155; width: 160px; background: #f8fafc; }
-        .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 700; font-size: 12px; text-align: center; width: 110px; }
+        .date-cell { font-weight: 700; color: #334155; width: 140px; background: #f8fafc; text-align: center; }
+        .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 700; font-size: 11px; text-align: center; width: 100px; }
         .subject-cell { font-weight: 700; color: #1e40af; background: #ffffff; }
 
-        .scroll-hint { font-size: 10px; color: #94a3b8; text-align: right; margin-bottom: 5px; font-style: italic; }
-        .motivation-box { text-align: center; margin-top: 30px; padding: 20px; border-top: 2px dashed var(--border-color); font-style: italic; color: #475569; font-size: 13px; }
+        .scroll-hint { font-size: 9px; color: #94a3b8; text-align: right; margin-bottom: 5px; font-style: italic; }
+        .motivation-box { text-align: center; margin-top: 40px; padding: 20px; border-top: 1px dashed var(--border-color); font-style: italic; color: #475569; font-size: 12px; }
         
         .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; }
-        
-        /* Footer Bersih Tanpa Copyright */
-        .footer { text-align: center; padding: 20px 0 100px; }
+        .footer { text-align: center; padding: 10px 0 80px; }
     </style>
 </head>
 <body>
 
 <div class="header">
     <h1>JADWAL UTS SEMESTER GENAP</h1>
-    <p>Universitas HKBP Nommensen - Fakultas Hukum</p>
+    <p style="font-size: 12px;">Universitas HKBP Nommensen - FH</p>
 </div>
 
 <div class="container">
@@ -93,7 +91,7 @@
         <div class="scroll-hint">Geser tabel ke samping →</div>
         <div class="table-wrapper">
             <table>
-                <thead><tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
+                <thead><tr><th style="width: 140px;">Hari, Tanggal</th><th style="width: 100px;">Jam</th><th>Mata Kuliah</th></tr></thead>
                 <tbody id="body-sem2"></tbody>
             </table>
         </div>
@@ -108,7 +106,7 @@
         <div class="scroll-hint">Geser tabel ke samping →</div>
         <div class="table-wrapper">
             <table>
-                <thead><tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
+                <thead><tr><th style="width: 140px;">Hari, Tanggal</th><th style="width: 100px;">Jam</th><th>Mata Kuliah</th></tr></thead>
                 <tbody id="body-sem4"></tbody>
             </table>
         </div>
@@ -123,7 +121,7 @@
         <div class="scroll-hint">Geser tabel ke samping →</div>
         <div class="table-wrapper">
             <table>
-                <thead><tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
+                <thead><tr><th style="width: 140px;">Hari, Tanggal</th><th style="width: 100px;">Jam</th><th>Mata Kuliah</th></tr></thead>
                 <tbody id="body-sem6"></tbody>
             </table>
         </div>
