@@ -3,211 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal UTS Fakultas Hukum</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>Jadwal UTS Semester Genap</title>
     <style>
-        :root { --primary: #1e3a8a; --accent: #dc2626; --bg: #f1f5f9; --white: #ffffff; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #1e293b; line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }
         
-        .header { text-align: center; padding: 30px 0; background: var(--primary); color: white; border-radius: 0 0 30px 30px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .header h1 { font-size: 24px; font-weight: 800; margin: 0; }
-        .header p { font-size: 14px; opacity: 0.9; margin-top: 5px; }
+        /* Header */
+        .header { background-color: #0d47a1; color: white; padding: 25px; text-align: center; }
+        .header h1 { margin: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .header p { margin: 5px 0 0; opacity: 0.8; font-size: 14px; }
 
-        /* KOTAK JADWAL HARI INI (DI ATAS SETIAP TABEL) */
-        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .today-alert .icon { font-size: 24px; }
-        .today-alert .info b { color: #92400e; display: block; font-size: 13px; text-transform: uppercase; }
-        .today-alert .info span { font-size: 15px; font-weight: 700; color: #1e293b; }
+        /* Widget Jam & Tanggal */
+        .time-widget { padding: 15px; background: #e3f2fd; text-align: center; border-bottom: 2px solid #bbdefb; }
+        #date-now { font-size: 16px; color: #555; margin-bottom: 5px; }
+        #clock-now { font-size: 24px; font-weight: bold; color: #0d47a1; margin: 0; }
 
-        /* TABEL SEMESTER */
-        .semester-section { margin-bottom: 50px; }
-        .semester-title { font-size: 20px; font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: var(--primary); }
+        .section-title { padding: 15px 20px; background: #f8f9fa; margin: 0; border-left: 5px solid #0d47a1; font-size: 18px; color: #0d47a1; font-weight: bold; border-bottom: 1px solid #dee2e6; }
+
+        /* Style Tabel */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { background-color: #f1f3f4; color: #333; font-size: 12px; text-transform: uppercase; padding: 12px; border-bottom: 2px solid #dee2e6; }
+        td { padding: 15px; border-bottom: 1px solid #eee; font-size: 14px; color: #444; text-align: center; }
+        .matkul { text-align: left; font-weight: 600; color: #1565c0; }
         
-        .table-container { background: white; border-radius: 16px; overflow-x: auto; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
-        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 500px; }
-        th { background: #f8fafc; padding: 15px; font-size: 12px; font-weight: 700; text-transform: uppercase; color: #64748b; border-bottom: 2px solid #edf2f7; }
-        td { padding: 15px; border-top: 1px solid #f1f5f9; font-size: 14px; }
-        
-        .date-cell { font-weight: 700; color: #334155; width: 180px; }
-        .time-cell { color: #64748b; font-weight: 600; width: 120px; }
-        .subject-cell { font-weight: 600; color: var(--primary); }
-
-        /* IKLAN BANNER PALING BAWAH */
-        .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 40px; min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 10px; }
-        .ad-label { font-size: 10px; color: #94a3b8; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-
-        .footer { text-align: center; font-size: 11px; color: #94a3b8; padding: 30px 0 100px; }
+        .row-highlight { background-color: #fffde7; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>JADWAL UTS SEMESTER GENAP</h1>
-    <p>Universitas HKBP Nommensen - Fakultas Hukum</p>
-</div>
-
 <div class="container">
-
-    <div class="semester-section">
-        <div class="semester-title">📚 SEMESTER II</div>
-        
-        <div class="today-alert" id="alert-sem2">
-            <div class="icon">📖</div>
-            <div class="info">
-                <b>Ujian Hari Ini (Semester II):</b>
-                <span id="text-sem2">Tidak ada jadwal ujian hari ini.</span>
-            </div>
-        </div>
-
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr>
-                </thead>
-                <tbody id="body-sem2">
-                    </tbody>
-            </table>
-        </div>
+    <div class="header">
+        <h1>JADWAL UTS SEMESTER GENAP</h1>
+        <p>Universitas HKBP Nommensen - Fakultas Hukum</p>
     </div>
 
-    <div class="semester-section">
-        <div class="semester-title">📚 SEMESTER IV</div>
-        
-        <div class="today-alert" id="alert-sem4">
-            <div class="icon">📖</div>
-            <div class="info">
-                <b>Ujian Hari Ini (Semester IV):</b>
-                <span id="text-sem4">Tidak ada jadwal ujian hari ini.</span>
-            </div>
-        </div>
-
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr>
-                </thead>
-                <tbody id="body-sem4"></tbody>
-            </table>
-        </div>
+    <div class="time-widget">
+        <div id="date-now">Memuat tanggal...</div>
+        <div id="clock-now">00:00:00</div>
     </div>
 
-    <div class="semester-section">
-        <div class="semester-title">📚 SEMESTER VI</div>
-        
-        <div class="today-alert" id="alert-sem6">
-            <div class="icon">📖</div>
-            <div class="info">
-                <b>Ujian Hari Ini (Semester VI):</b>
-                <span id="text-sem6">Tidak ada jadwal ujian hari ini.</span>
-            </div>
-        </div>
+    <h2 class="section-title">📚 SEMESTER II</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>TANGGAL</th>
+                <th>JAM</th>
+                <th>MATA KULIAH</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Senin, 4 Mei 2026</td>
+                <td>08.00 – 09.40</td>
+                <td class="matkul">Pendidikan Agama</td>
+            </tr>
+            <tr class="row-highlight">
+                <td>Senin, 4 Mei 2026</td>
+                <td>16.30 – 17.00</td>
+                <td class="matkul">HAM (Hak Asasi Manusia)</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr>
-                </thead>
-                <tbody id="body-sem6"></tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="ad-banner-bottom">
-        <div class="ad-label">Advertisement</div>
-        <div id="container-2731e2588d7455b7e18439b8fa633090"></div>
-        <script async="async" data-cfasync="false" src="https://pl29170548.profitablecpmratenetwork.com/2731e2588d7455b7e18439b8fa633090/invoke.js"></script>
-    </div>
-
-    <div class="footer">
-        &copy; 2026 Academic Portal Hukum. <br>
-        Waktu sistem: <span id="realtime-clock">--:--</span>
-    </div>
+    <h2 class="section-title">📚 SEMESTER IV</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>TANGGAL</th>
+                <th>JAM</th>
+                <th>MATA KULIAH</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Senin, 4 Mei 2026</td>
+                <td>14.30 – 16.10</td>
+                <td class="matkul">Hukum Internasional</td>
+            </tr>
+            <tr>
+                <td rowspan="2"><b>Rabu, 6 Mei 2026</b></td>
+                <td>08.20 – 10.00</td>
+                <td class="matkul">Hukum Lembaga Negara</td>
+            </tr>
+            <tr>
+                <td>14.30 – 16.10</td>
+                <td class="matkul">Hukum Perjanjian</td>
+            </tr>
+            <tr>
+                <td rowspan="2"><b>Kamis, 7 Mei 2026</b></td>
+                <td>08.20 – 10.00</td>
+                <td class="matkul">Hukum Perdata Internasional</td>
+            </tr>
+            <tr>
+                <td>14.30 – 16.10</td>
+                <td class="matkul">Hukum Internasional Lanjutan</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-
-<script type='text/javascript' src='https://pl29170546.profitablecpmratenetwork.com/31/90/9e/31909e2c4790b086ed9fe5590abcfe13.js'></script>
 
 <script>
-    // DATA JADWAL LENGKAP
-    const jadwalData = {
-        sem2: [
-            { tgl: "Senin, 27 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata" },
-            { tgl: "Selasa, 28 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Pidana" },
-            { tgl: "Rabu, 29 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Tata Negara" },
-            { tgl: "Kamis, 30 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Administrasi Negara" },
-            { tgl: "Senin, 4 Mei 2026", jam: "08.20 – 10.00", matkul: "Pengantar Tata Hukum Indonesia" },
-            { tgl: "Selasa, 5 Mei 2026", jam: "08.20 – 10.00", matkul: "Etika" },
-            { tgl: "Rabu, 6 Mei 2026", jam: "10.20 – 12.00", matkul: "Pendidikan Kewarganegaraan" }
-        ],
-        sem4: [
-            { tgl: "Senin, 27 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Waris Islam" },
-            { tgl: "Selasa, 28 April 2026", jam: "10.20 – 12.00", matkul: "Kriminologi dan Viktimologi" },
-            { tgl: "Rabu, 29 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Cyber" },
-            { tgl: "Kamis, 30 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Konservasi" },
-            { tgl: "Sabtu, 2 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Ketenagakerjaan dan PHI" },
-            { tgl: "Senin, 4 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Perdata Internasional" },
-            { tgl: "Selasa, 5 Mei 2026", jam: "10.20 – 12.00", matkul: "Hukum Kepailitan dan Peradilan Niaga" },
-            { tgl: "Rabu, 6 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Lembaga Pembiayaan" },
-            { tgl: "Rabu, 6 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Perusahaan" },
-            { tgl: "Kamis, 7 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Perdamaian Penyelesaian Sengketa" },
-            { tgl: "Kamis, 7 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Internasional" }
-        ],
-        sem6: [
-            { tgl: "Senin, 27 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Pidana" },
-            { tgl: "Selasa, 28 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Perdata" },
-            { tgl: "Rabu, 29 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Acara Peradilan Tata Usaha Negara" },
-            { tgl: "Kamis, 30 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Perjanjian / Kontrak" },
-            { tgl: "Sabtu, 2 Mei 2026", jam: "10.20 – 12.00", matkul: "Legal Opinion dan Audit Hukum" },
-            { tgl: "Senin, 4 Mei 2026", jam: "10.20 – 12.00", matkul: "Hukum Pidana Militer & Peradilan Militer" },
-            { tgl: "Selasa, 5 Mei 2026", jam: "14.30 – 16.10", matkul: "Filsafat Hukum" },
-            { tgl: "Rabu, 6 Mei 2026", jam: "16.20 – 18.00", matkul: "Hukum Acara Mahkamah Konstitusi" },
-            { tgl: "Kamis, 7 Mei 2026", jam: "10.20 – 12.00", matkul: "Kepemimpinan dan Kewirausahaan" }
-        ]
-    };
-
-    function renderTabel() {
-        Object.keys(jadwalData).forEach(sem => {
-            const tbody = document.getElementById(`body-${sem}`);
-            jadwalData[sem].forEach(item => {
-                const row = `<tr>
-                    <td class="date-cell">${item.tgl}</td>
-                    <td class="time-cell">${item.jam}</td>
-                    <td class="subject-cell">${item.matkul}</td>
-                </tr>`;
-                tbody.innerHTML += row;
-            });
-        });
+    function updateDateTime() {
+        const now = new Date();
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('date-now').innerText = now.toLocaleDateString('id-ID', dateOptions);
+        document.getElementById('clock-now').innerText = now.toLocaleTimeString('id-ID');
     }
-
-    function checkToday() {
-        const d = new Date();
-        const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-        const todayString = d.toLocaleDateString('id-ID', options);
-        
-        document.getElementById('realtime-clock').innerText = d.toLocaleTimeString('id-ID');
-
-        Object.keys(jadwalData).forEach(sem => {
-            const matching = jadwalData[sem].filter(item => item.tgl.includes(todayString));
-            const alertText = document.getElementById(`text-${sem}`);
-            const alertBox = document.getElementById(`alert-${sem}`);
-
-            if (matching.length > 0) {
-                alertText.innerHTML = matching.map(m => `${m.matkul} (${m.jam})`).join(" & ");
-                alertBox.style.background = "#dcfce7";
-                alertBox.style.borderColor = "#86efac";
-                alertBox.querySelector('b').style.color = "#166534";
-            }
-        });
-    }
-
-    window.onload = () => {
-        renderTabel();
-        checkToday();
-        setInterval(checkToday, 1000);
-    };
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
 </script>
 
 </body>
 </html>
+
