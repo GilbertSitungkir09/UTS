@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal UTS Semester Genap</title>
+    <title>Jadwal UTS FH UHN 2026</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: auto; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 10px; }
+        .container { max-width: 900px; margin: auto; background: white; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; }
         
-        /* Header */
-        .header { background-color: #0d47a1; color: white; padding: 25px; text-align: center; }
-        .header h1 { margin: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .header p { margin: 5px 0 0; opacity: 0.8; font-size: 14px; }
+        .header { background-color: #0d47a1; color: white; padding: 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 18px; text-transform: uppercase; }
+        .header p { margin: 5px 0 0; font-size: 13px; opacity: 0.9; }
 
-        /* Widget Jam & Tanggal */
         .time-widget { padding: 15px; background: #e3f2fd; text-align: center; border-bottom: 2px solid #bbdefb; }
-        #date-now { font-size: 16px; color: #555; margin-bottom: 5px; }
-        #clock-now { font-size: 24px; font-weight: bold; color: #0d47a1; margin: 0; }
+        #date-now { font-size: 14px; color: #555; }
+        #clock-now { font-size: 22px; font-weight: bold; color: #0d47a1; display: block; }
 
-        .section-title { padding: 15px 20px; background: #fff; margin: 0; border-left: 5px solid #0d47a1; font-size: 18px; color: #0d47a1; }
-
-        /* Style Tabel */
-        table { width: 100%; border-collapse: collapse; }
-        th { background-color: #f8f9fa; color: #333; font-size: 13px; text-transform: uppercase; padding: 12px; border-bottom: 2px solid #dee2e6; }
-        td { padding: 15px; border-bottom: 1px solid #eee; font-size: 14px; color: #444; text-align: center; }
-        .matkul { text-align: left; font-weight: 600; color: #1565c0; }
+        .section-title { padding: 12px 20px; background: #1565c0; color: white; margin: 0; font-size: 16px; display: flex; align-items: center; }
         
-        .badge-today { background: #fff3e0; padding: 10px; margin: 10px; border-radius: 8px; border: 1px solid #ffe0b2; text-align: center; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background: #fff; }
+        th { background-color: #f8f9fa; color: #333; font-size: 11px; padding: 12px; border-bottom: 2px solid #dee2e6; text-align: center; }
+        td { padding: 12px 8px; border-bottom: 1px solid #eee; font-size: 13px; color: #333; text-align: center; }
+        .matkul { text-align: left; font-weight: 600; color: #0d47a1; }
+        .date-col { font-weight: bold; background-color: #fafafa; width: 30%; }
+        .jam-col { width: 25%; }
+        
+        /* Warna highlight khusus untuk jadwal masak masak */
+        .highlight-special { background-color: #fff9c4; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -38,17 +38,49 @@
     </div>
 
     <div class="time-widget">
-        <div id="date-now">Memuat tanggal...</div>
-        <div id="clock-now">00:00:00</div>
+        <span id="date-now">Memuat tanggal...</span>
+        <span id="clock-now">00:00:00</span>
     </div>
+
+    <h2 class="section-title">📚 SEMESTER II</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>TANGGAL</th>
+                <th>JAM</th>
+                <th>MATA KULIAH</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="highlight-special">
+                <td class="date-col">Sabtu, 18 April 2026</td>
+                <td class="jam-col">20.00 – 22.00</td>
+                <td class="matkul">Masak Masak</td>
+            </tr>
+            <tr>
+                <td class="date-col">Senin, 27 April 2026</td>
+                <td class="jam-col">10.20 – 12.00</td>
+                <td class="matkul">Hukum Perdata</td>
+            </tr>
+            <tr>
+                <td class="date-col">Selasa, 28 April 2026</td>
+                <td class="jam-col">14.30 – 16.10</td>
+                <td class="matkul">Hukum Pidana</td>
+            </tr>
+            <tr>
+                <td class="date-col">Senin, 4 Mei 2026</td>
+                <td class="jam-col">08.00 – 09.40</td>
+                <td class="matkul">Pendidikan Agama</td>
+            </tr>
+            <tr>
+                <td class="date-col">Rabu, 6 Mei 2026</td>
+                <td class="jam-col">10.20 – 12.00</td>
+                <td class="matkul">Pendidikan Kewarganegaraan</td>
+            </tr>
+        </tbody>
+    </table>
 
     <h2 class="section-title">📚 SEMESTER IV</h2>
-
-    <div class="badge-today">
-        <strong>UJIAN HARI INI:</strong><br>
-        <span id="exam-status">Mengecek jadwal...</span>
-    </div>
-
     <table>
         <thead>
             <tr>
@@ -59,53 +91,80 @@
         </thead>
         <tbody>
             <tr>
-                <td>Senin, 4 Mei 2026</td>
-                <td>14.30 – 16.10</td>
+                <td class="date-col">Senin, 4 Mei 2026</td>
+                <td class="jam-col">14.30 – 16.10</td>
                 <td class="matkul">Hukum Internasional</td>
             </tr>
-
             <tr>
-                <td rowspan="2"><b>Rabu, 6 Mei 2026</b></td>
-                <td>08.20 – 10.00</td>
+                <td rowspan="2" class="date-col">Rabu, 6 Mei 2026</td>
+                <td class="jam-col">08.20 – 10.00</td>
                 <td class="matkul">Hukum Lembaga Negara</td>
             </tr>
             <tr>
-                <td>14.30 – 16.10</td>
+                <td class="jam-col">14.30 – 16.10</td>
                 <td class="matkul">Hukum Perjanjian</td>
             </tr>
-
             <tr>
-                <td rowspan="2"><b>Kamis, 7 Mei 2026</b></td>
-                <td>08.20 – 10.00</td>
+                <td rowspan="2" class="date-col">Kamis, 7 Mei 2026</td>
+                <td class="jam-col">08.20 – 10.00</td>
                 <td class="matkul">Hukum Perdata Internasional</td>
             </tr>
             <tr>
-                <td>14.30 – 16.10</td>
+                <td class="jam-col">14.30 – 16.10</td>
                 <td class="matkul">Hukum Internasional Lanjutan</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="section-title">📚 SEMESTER VI</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>TANGGAL</th>
+                <th>JAM</th>
+                <th>MATA KULIAH</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="date-col">Senin, 27 April 2026</td>
+                <td class="jam-col">08.20 – 10.00</td>
+                <td class="matkul">Hukum Acara Pidana</td>
+            </tr>
+            <tr>
+                <td class="date-col">Kamis, 30 April 2026</td>
+                <td class="jam-col">10.20 – 12.00</td>
+                <td class="matkul">Filsafat Hukum</td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="date-col">Kamis, 7 Mei 2026</td>
+                <td class="jam-col">08.20 – 10.00</td>
+                <td class="matkul">Hukum Acara Perdata</td>
+            </tr>
+            <tr>
+                <td class="jam-col">14.30 – 16.10</td>
+                <td class="matkul">Etika Profesi Hukum</td>
             </tr>
         </tbody>
     </table>
 </div>
 
 <script>
-    function updateDateTime() {
+    // Fungsi untuk memperbarui jam dan tanggal real-time
+    function updateClock() {
         const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         
-        // Format Tanggal Indonesia
-        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('date-now').innerText = now.toLocaleDateString('id-ID', dateOptions);
+        // Menampilkan Tanggal Bahasa Indonesia
+        document.getElementById('date-now').innerText = now.toLocaleDateString('id-ID', options);
         
-        // Format Jam
+        // Menampilkan Jam Digital
         document.getElementById('clock-now').innerText = now.toLocaleTimeString('id-ID');
-
-        // Logika sederhana untuk status ujian hari ini (opsional)
-        // Kamu bisa kembangkan ini nanti
-        document.getElementById('exam-status').innerText = "Tidak ada jadwal ujian hari ini.";
     }
 
-    // Update setiap detik
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
+    // Jalankan fungsi setiap 1 detik
+    setInterval(updateClock, 1000);
+    updateClock();
 </script>
 
 </body>
