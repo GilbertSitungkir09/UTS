@@ -4,26 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="referrer" content="always">
-    <title>Jadwal UTS Fakultas Hukum</title>
+    <title>Jadwal UTS FH UHN</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root { --primary: #1e3a8a; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; }
-        
         html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #1e293b; line-height: 1.6; }
-        
         .container { max-width: 800px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
-        
         .header { text-align: center; padding: 25px 15px; background: var(--primary); color: white; border-radius: 0 0 25px 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .header h1 { font-size: 18px; font-weight: 800; margin: 0; letter-spacing: 0.5px; }
         
         /* JARAK ANTAR ELEMEN ATAS */
         .live-clock-box { text-align: center; background: #ffffff; padding: 12px; border-radius: 12px; margin-bottom: 25px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .live-clock-box b { color: var(--primary); font-size: 15px; font-weight: 800; }
+        .live-clock-box b { color: var(--primary); font-size: 14px; font-weight: 800; }
 
-        .nb-header { background: #fff1f2; color: #be123c; padding: 12px; border-radius: 10px; font-size: 11px; font-weight: 700; border: 1px solid #fee2e2; margin: 25px auto; text-align: center; line-height: 1.4; }
+        .nb-header { background: #fff1f2; color: #be123c; padding: 12px; border-radius: 10px; font-size: 11px; font-weight: 700; border: 1px solid #fee2e2; margin: 25px auto; text-align: center; }
 
         .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 12px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
         .today-alert .icon { font-size: 20px; }
@@ -31,29 +28,12 @@
         .today-alert .info span { font-size: 13px; font-weight: 700; color: #1e293b; }
 
         .semester-section { margin-top: 30px; margin-bottom: 50px; }
-        .semester-title { font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; gap: 8px; }
+        .semester-title { font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 12px; }
         
-        /* TABEL DIPERKECIL & SISTEM GESER */
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            display: block;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            -webkit-overflow-scrolling: touch;
-        }
-
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            min-width: 580px; /* Ukuran diperkecil dari sebelumnya */
-            table-layout: fixed; 
-        }
-        
+        .table-wrapper { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 10px; background: white; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; min-width: 580px; table-layout: fixed; }
         th { background: var(--primary); padding: 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
-        td { padding: 10px; border: 1px solid var(--border-color); font-size: 12px; vertical-align: middle; word-wrap: break-word; }
+        td { padding: 10px; border: 1px solid var(--border-color); font-size: 12px; vertical-align: middle; }
         
         .date-cell { font-weight: 700; color: #334155; width: 140px; background: #f8fafc; text-align: center; }
         .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 700; font-size: 11px; text-align: center; width: 100px; }
@@ -61,9 +41,8 @@
 
         .scroll-hint { font-size: 9px; color: #94a3b8; text-align: right; margin-bottom: 5px; font-style: italic; }
         .motivation-box { text-align: center; margin-top: 40px; padding: 20px; border-top: 1px dashed var(--border-color); font-style: italic; color: #475569; font-size: 12px; }
-        
-        .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; }
-        .footer { text-align: center; padding: 10px 0 80px; }
+        .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 20px; padding: 15px; text-align: center; }
+        .footer { padding-bottom: 80px; }
     </style>
 </head>
 <body>
@@ -75,7 +54,7 @@
 
 <div class="container">
     <div class="live-clock-box">
-        <b id="current-date-time">Memuat waktu...</b>
+        <b id="current-date-time">Sinkronisasi Waktu WIB...</b>
     </div>
 
     <div class="nb-header">
@@ -135,7 +114,6 @@
         <script async="async" data-cfasync="false" src="https://ferocitycandour.com/d0335f1a099b9842202fbcf0493e76cc/invoke.js"></script>
         <div id="container-d0335f1a099b9842202fbcf0493e76cc"></div>
     </div>
-
     <div class="footer"></div>
 </div>
 
@@ -195,24 +173,36 @@
         });
     }
 
-    function checkLive() {
-        const d = new Date();
+    function checkWIB() {
+        // MENGAMBIL WAKTU ASLI UTC
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        
+        // MENAMBAHKAN 7 JAM UNTUK WIB
+        const wibTime = new Date(utc + (3600000 * 7));
+
         const optionsDate = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-        const dateStr = d.toLocaleDateString('id-ID', optionsDate);
-        const timeStr = d.toLocaleTimeString('id-ID');
+        const dateStr = wibTime.toLocaleDateString('id-ID', optionsDate);
+        const timeStr = wibTime.toLocaleTimeString('id-ID', { hour12: false });
+        
         document.getElementById('current-date-time').innerText = `${dateStr} | ${timeStr} WIB`;
 
         Object.keys(jadwalData).forEach(sem => {
             const matching = jadwalData[sem].filter(item => item.tgl.includes(dateStr));
             const alertElem = document.getElementById(`text-${sem}`);
+            const alertBox = document.getElementById(`alert-${sem}`);
+            
             if (matching.length > 0) {
                 alertElem.innerHTML = matching.map(m => `<b>${m.matkul}</b> (${m.jam})`).join(" & ");
-                document.getElementById(`alert-${sem}`).style.background = "#dcfce7";
+                alertBox.style.background = "#dcfce7";
+            } else {
+                alertElem.innerText = "Tidak ada jadwal ujian hari ini.";
+                alertBox.style.background = "#fffbeb";
             }
         });
     }
 
-    window.onload = () => { renderTabel(); checkLive(); setInterval(checkLive, 1000); };
+    window.onload = () => { renderTabel(); checkWIB(); setInterval(checkWIB, 1000); };
 </script>
 </body>
 </html>
