@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="referrer" content="always">
     <title>Jadwal UTS Fakultas Hukum</title>
     
@@ -10,46 +10,49 @@
     
     <style>
         :root { --primary: #1e3a8a; --accent: #dc2626; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #1e293b; line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #1e293b; line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 800px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
         
-        .header { text-align: center; padding: 30px 0; background: var(--primary); color: white; border-radius: 0 0 30px 30px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .header h1 { font-size: 24px; font-weight: 800; margin: 0; letter-spacing: 1px; }
+        .header { text-align: center; padding: 25px 15px; background: var(--primary); color: white; border-radius: 0 0 25px 25px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header h1 { font-size: 20px; font-weight: 800; margin: 0; letter-spacing: 0.5px; }
         
-        /* WAKTU TERKINI TANPA LABEL */
-        .live-clock-box { text-align: center; background: #ffffff; padding: 12px; border-radius: 15px; margin-bottom: 20px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .live-clock-box b { color: var(--primary); font-size: 18px; font-weight: 800; }
+        .live-clock-box { text-align: center; background: #ffffff; padding: 12px; border-radius: 12px; margin-bottom: 15px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .live-clock-box b { color: var(--primary); font-size: 15px; font-weight: 800; }
 
-        .nb-header { background: #fff1f2; color: #be123c; padding: 12px; border-radius: 12px; font-size: 12px; font-weight: 700; border: 1px solid #ffe4e6; margin: 15px auto; max-width: 90%; text-align: center; }
+        .nb-header { background: #fff1f2; color: #be123c; padding: 10px; border-radius: 10px; font-size: 11px; font-weight: 700; border: 1px solid #fee2e2; margin: 10px auto; text-align: center; }
 
-        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
-        .today-alert .icon { font-size: 24px; }
-        .today-alert .info b { color: #92400e; display: block; font-size: 12px; text-transform: uppercase; }
-        .today-alert .info span { font-size: 14px; font-weight: 700; color: #1e293b; }
+        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .today-alert .icon { font-size: 20px; }
+        .today-alert .info b { color: #92400e; display: block; font-size: 11px; text-transform: uppercase; }
+        .today-alert .info span { font-size: 13px; font-weight: 700; color: #1e293b; }
 
-        .semester-section { margin-bottom: 50px; }
-        .semester-title { font-size: 20px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 6px solid var(--primary); padding-left: 12px; text-transform: uppercase; }
+        .semester-section { margin-bottom: 40px; }
+        .semester-title { font-size: 18px; font-weight: 800; margin-bottom: 12px; color: var(--primary); border-left: 6px solid var(--primary); padding-left: 12px; }
         
-        /* TABEL PROFESIONAL DENGAN PEMBATAS TEGAS */
-        .table-container { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); border: 2px solid var(--border-color); }
-        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 500px; }
-        
-        th { background: var(--primary); padding: 15px; font-size: 12px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
-        
-        td { padding: 14px 15px; border: 1px solid var(--border-color); font-size: 14px; vertical-align: middle; }
-        
-        /* KOLOM TANGGAL */
-        .date-cell { font-weight: 700; color: #334155; width: 180px; background: #f8fafc; }
-        
-        /* KOLOM JAM PROFESIONAL */
-        .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 700; font-size: 13px; text-align: center; width: 130px; }
-        
-        /* KOLOM MATA KULIAH */
-        .subject-cell { font-weight: 700; color: #1e40af; background: #ffffff; }
+        /* FIX: SISTEM GESER TABEL */
+        .table-container { 
+            background: white; 
+            border-radius: 12px; 
+            overflow-x: auto; /* Mengaktifkan fungsi geser horizontal */
+            -webkit-overflow-scrolling: touch; /* Membuat geseran halus di iPhone */
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); 
+            border: 2px solid var(--border-color); 
+            margin-bottom: 10px;
+        }
 
-        tr:hover { background-color: #f8fafc; }
+        /* Memberikan petunjuk bahwa tabel bisa digeser */
+        .scroll-hint { font-size: 10px; color: #94a3b8; text-align: right; margin-bottom: 5px; font-style: italic; }
 
-        .motivation-box { text-align: center; margin-top: 40px; padding: 25px; border-top: 2px dashed var(--border-color); font-style: italic; color: #475569; font-size: 14px; font-weight: 500; }
+        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 600px; } /* Min-width memastikan tabel tidak gepeng */
+        
+        th { background: var(--primary); padding: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
+        td { padding: 12px; border: 1px solid var(--border-color); font-size: 13px; vertical-align: middle; }
+        
+        .date-cell { font-weight: 700; color: #334155; width: 150px; background: #f8fafc; }
+        .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 700; font-size: 12px; text-align: center; width: 110px; }
+        .subject-cell { font-weight: 700; color: #1e40af; background: #ffffff; min-width: 200px; }
+
+        .motivation-box { text-align: center; margin-top: 30px; padding: 20px; border-top: 2px dashed var(--border-color); font-style: italic; color: #475569; font-size: 13px; }
         
         .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; }
         .footer { text-align: center; font-size: 11px; color: #94a3b8; padding: 20px 0 100px; }
@@ -77,6 +80,7 @@
             <div class="icon">📖</div>
             <div class="info"><b>Ujian Hari Ini (Semester II):</b> <span id="text-sem2">Tidak ada jadwal.</span></div>
         </div>
+        <div class="scroll-hint">Geser tabel ke samping untuk melihat detail →</div>
         <div class="table-container">
             <table>
                 <thead><tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
@@ -91,6 +95,7 @@
             <div class="icon">📖</div>
             <div class="info"><b>Ujian Hari Ini (Semester IV):</b> <span id="text-sem4">Tidak ada jadwal.</span></div>
         </div>
+        <div class="scroll-hint">Geser tabel ke samping untuk melihat detail →</div>
         <div class="table-container">
             <table>
                 <thead><tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
@@ -105,6 +110,7 @@
             <div class="icon">📖</div>
             <div class="info"><b>Ujian Hari Ini (Semester VI):</b> <span id="text-sem6">Tidak ada jadwal.</span></div>
         </div>
+        <div class="scroll-hint">Geser tabel ke samping untuk melihat detail →</div>
         <div class="table-container">
             <table>
                 <thead><tr><th>Hari, Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr></thead>
@@ -173,19 +179,12 @@
             
             for (let i = 0; i < data.length; i++) {
                 let row = `<tr>`;
-                if (i > 0 && data[i].tgl === data[i-1].tgl) {
-                    // Skip date cell
-                } else {
+                if (i > 0 && data[i].tgl === data[i-1].tgl) { } else {
                     let count = 1;
-                    while(i + count < data.length && data[i+count].tgl === data[i].tgl) {
-                        count++;
-                    }
+                    while(i + count < data.length && data[i+count].tgl === data[i].tgl) { count++; }
                     row += `<td class="date-cell" rowspan="${count}">${data[i].tgl}</td>`;
                 }
-                
-                row += `<td class="time-cell">${data[i].jam}</td>
-                        <td class="subject-cell">${data[i].matkul}</td>
-                        </tr>`;
+                row += `<td class="time-cell">${data[i].jam}</td><td class="subject-cell">${data[i].matkul}</td></tr>`;
                 tbody.innerHTML += row;
             }
         });
