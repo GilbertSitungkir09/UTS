@@ -16,6 +16,9 @@
         #date-now { font-size: 14px; color: #555; }
         #clock-now { font-size: 22px; font-weight: bold; color: #0d47a1; display: block; }
 
+        .status-box { background-color: #fff9c4; border: 1px solid #fbc02d; padding: 15px; margin: 10px; border-radius: 8px; font-size: 14px; line-height: 1.6; }
+        .status-box strong { color: #d32f2f; display: block; margin-bottom: 5px; font-size: 15px; }
+
         .section-title { padding: 12px 20px; background: #1565c0; color: white; margin: 0; font-size: 16px; font-weight: bold; }
         
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; background: #fff; }
@@ -24,14 +27,13 @@
         .matkul { text-align: left; font-weight: 600; color: #0d47a1; }
         .date-col { font-weight: bold; background-color: #fafafa; width: 30%; }
         .jam-col { width: 25%; }
-        .highlight-special { background-color: #fff9c4; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <h1>JADWAL UTS SEMESTER GENAP</h1>
+        <h1>JADWAL UJIAN TENGAH SEMESTER GENAP</h1>
         <p>Universitas HKBP Nommensen - Fakultas Hukum</p>
     </div>
 
@@ -40,82 +42,128 @@
         <span id="clock-now">00:00:00</span>
     </div>
 
+    <div class="status-box" id="status-s2">
+        <strong>Ujian Hari Ini (Semester II) :</strong>
+        <div id="content-s2">Mengecek jadwal...</div>
+    </div>
     <h2 class="section-title">📚 SEMESTER II</h2>
     <table>
-        <thead>
-            <tr><th>TANGGAL</th><th>JAM</th><th>MATA KULIAH</th></tr>
-        </thead>
+        <thead><tr><th>TANGGAL</th><th>JAM</th><th>MATA KULIAH</th></tr></thead>
         <tbody>
-            <tr class="highlight-special">
-                <td class="date-col">Sabtu, 18 April 2026</td>
-                <td class="jam-col">20.00 – 22.00</td>
-                <td class="matkul">Masak Masak</td>
-            </tr>
-            <tr><td class="date-col">Senin, 27 April 2026</td><td class="jam-col">10.20 – 12.00</td><td class="matkul">Hukum Perdata</td></tr>
-            <tr><td class="date-col">Selasa, 28 April 2026</td><td class="jam-col">14.30 – 16.10</td><td class="matkul">Hukum Pidana</td></tr>
-            <tr><td class="date-col">Rabu, 29 April 2026</td><td class="jam-col">08.20 – 10.00</td><td class="matkul">Hukum Tata Negara</td></tr>
-            <tr><td class="date-col">Kamis, 30 April 2026</td><td class="jam-col">10.20 – 12.00</td><td class="matkul">Hukum Administrasi Negara</td></tr>
-            <tr><td class="date-col">Senin, 4 Mei 2026</td><td class="jam-col">08.20 – 10.00</td><td class="matkul">Pengantar Tata Hukum Indonesia</td></tr>
-            <tr><td class="date-col">Selasa, 5 Mei 2026</td><td class="jam-col">08.20 – 10.00</td><td class="matkul">Etika</td></tr>
-            <tr><td class="date-col">Rabu, 6 Mei 2026</td><td class="jam-col">10.20 – 12.00</td><td class="matkul">Pendidikan Kewarganegaraan</td></tr>
+            <tr><td class="date-col">Sabtu, 18 April 2026</td><td>20.00 – 22.00</td><td class="matkul">Masak Masak</td></tr>
+            <tr><td class="date-col">Senin, 27 April 2026</td><td>10.20 – 12.00</td><td class="matkul">Hukum Perdata</td></tr>
+            <tr><td class="date-col">Selasa, 28 April 2026</td><td>14.30 – 16.10</td><td class="matkul">Hukum Pidana</td></tr>
+            <tr><td class="date-col">Rabu, 29 April 2026</td><td>08.20 – 10.00</td><td class="matkul">Hukum Tata Negara</td></tr>
+            <tr><td class="date-col">Kamis, 30 April 2026</td><td>10.20 – 12.00</td><td class="matkul">Hukum Administrasi Negara</td></tr>
+            <tr><td class="date-col">Senin, 4 Mei 2026</td><td>08.20 – 10.00</td><td class="matkul">Pengantar Tata Hukum Indonesia</td></tr>
+            <tr><td class="date-col">Selasa, 5 Mei 2026</td><td>08.20 – 10.00</td><td class="matkul">Etika</td></tr>
+            <tr><td class="date-col">Rabu, 6 Mei 2026</td><td>10.20 – 12.00</td><td class="matkul">Pendidikan Kewarganegaraan</td></tr>
         </tbody>
     </table>
 
+    <div class="status-box" id="status-s4">
+        <strong>Ujian Hari Ini (Semester IV) :</strong>
+        <div id="content-s4">Mengecek jadwal...</div>
+    </div>
     <h2 class="section-title">📚 SEMESTER IV</h2>
     <table>
-        <thead>
-            <tr><th>TANGGAL</th><th>JAM</th><th>MATA KULIAH</th></tr>
-        </thead>
+        <thead><tr><th>TANGGAL</th><th>JAM</th><th>MATA KULIAH</th></tr></thead>
         <tbody>
-            <tr><td class="date-col">Senin, 27 April 2026</td><td class="jam-col">14.30 – 16.10</td><td class="matkul">Hukum Waris Islam</td></tr>
-            <tr><td class="date-col">Selasa, 28 April 2026</td><td class="jam-col">10.20 – 12.00</td><td class="matkul">Kriminologi dan Viktimologi</td></tr>
-            <tr><td class="date-col">Rabu, 29 April 2026</td><td class="jam-col">10.20 – 12.00</td><td class="matkul">Hukum Cyber</td></tr>
-            <tr><td class="date-col">Kamis, 30 April 2026</td><td class="jam-col">08.20 – 10.00</td><td class="matkul">Hukum Konservasi</td></tr>
-            <tr><td class="date-col">Sabtu, 2 Mei 2026</td><td class="jam-col">08.20 – 10.00</td><td class="matkul">Hukum Ketenagakerjaan dan PHI</td></tr>
-            <tr><td class="date-col">Senin, 4 Mei 2026</td><td class="jam-col">14.30 – 16.10</td><td class="matkul">Hukum Perdata Internasional</td></tr>
-            <tr><td class="date-col">Selasa, 5 Mei 2026</td><td class="jam-col">10.20 – 12.00</td><td class="matkul">Hukum Kepailitan dan Peradilan Niaga</td></tr>
-            <tr>
-                <td rowspan="2" class="date-col">Rabu, 6 Mei 2026</td>
-                <td class="jam-col">08.20 – 10.00</td>
-                <td class="matkul">Hukum Lembaga Pembiayaan</td>
-            </tr>
-            <tr><td class="jam-col">14.30 – 16.10</td><td class="matkul">Hukum Perusahaan</td></tr>
-            <tr>
-                <td rowspan="2" class="date-col">Kamis, 7 Mei 2026</td>
-                <td class="jam-col">08.20 – 10.00</td><td class="matkul">Hukum Perdamaian Penyelesaian Sengketa</td>
-            </tr>
-            <tr><td class="jam-col">14.30 – 16.10</td><td class="matkul">Hukum Internasional</td></tr>
+            <tr><td class="date-col">Senin, 27 April 2026</td><td>14.30 – 16.10</td><td class="matkul">Hukum Waris Islam</td></tr>
+            <tr><td class="date-col">Selasa, 28 April 2026</td><td>10.20 – 12.00</td><td class="matkul">Kriminologi dan Viktimologi</td></tr>
+            <tr><td class="date-col">Rabu, 29 April 2026</td><td>10.20 – 12.00</td><td class="matkul">Hukum Cyber</td></tr>
+            <tr><td class="date-col">Kamis, 30 April 2026</td><td>08.20 – 10.00</td><td class="matkul">Hukum Konservasi</td></tr>
+            <tr><td class="date-col">Sabtu, 2 Mei 2026</td><td>08.20 – 10.00</td><td class="matkul">Hukum Ketenagakerjaan dan PHI</td></tr>
+            <tr><td class="date-col">Senin, 4 Mei 2026</td><td>14.30 – 16.10</td><td class="matkul">Hukum Perdata Internasional</td></tr>
+            <tr><td class="date-col">Selasa, 5 Mei 2026</td><td>10.20 – 12.00</td><td class="matkul">Hukum Kepailitan dan Peradilan Niaga</td></tr>
+            <tr><td rowspan="2" class="date-col">Rabu, 6 Mei 2026</td><td>08.20 – 10.00</td><td class="matkul">Hukum Lembaga Pembiayaan</td></tr>
+            <tr><td>14.30 – 16.10</td><td class="matkul">Hukum Perusahaan</td></tr>
+            <tr><td rowspan="2" class="date-col">Kamis, 7 Mei 2026</td><td>08.20 – 10.00</td><td class="matkul">Hukum Perdamaian Penyelesaian Sengketa</td></tr>
+            <tr><td>14.30 – 16.10</td><td class="matkul">Hukum Internasional</td></tr>
         </tbody>
     </table>
 
+    <div class="status-box" id="status-s6">
+        <strong>Ujian Hari Ini (Semester VI) :</strong>
+        <div id="content-s6">Mengecek jadwal...</div>
+    </div>
     <h2 class="section-title">📚 SEMESTER VI</h2>
     <table>
-        <thead>
-            <tr><th>TANGGAL</th><th>JAM</th><th>MATA KULIAH</th></tr>
-        </thead>
+        <thead><tr><th>TANGGAL</th><th>JAM</th><th>MATA KULIAH</th></tr></thead>
         <tbody>
-            <tr><td class="date-col">Senin, 27 April 2026</td><td class="jam-col">08.20 – 10.00</td><td class="matkul">Hukum Acara Pidana</td></tr>
-            <tr><td class="date-col">Selasa, 28 April 2026</td><td class="jam-col">08.20 – 10.00</td><td class="matkul">Hukum Acara Perdata</td></tr>
-            <tr><td class="date-col">Rabu, 29 April 2026</td><td class="jam-col">14.30 – 16.10</td><td class="matkul">Hukum Acara Peradilan Tata Usaha Negara</td></tr>
-            <tr><td class="date-col">Kamis, 30 April 2026</td><td class="jam-col">14.30 – 16.10</td><td class="matkul">Hukum Perjanjian / Kontrak</td></tr>
-            <tr><td class="date-col">Sabtu, 2 Mei 2026</td><td class="jam-col">10.20 – 12.00</td><td class="matkul">Legal Opinion dan Audit Hukum</td></tr>
-            <tr><td class="date-col">Senin, 4 Mei 2026</td><td class="jam-col">10.20 – 12.00</td><td class="matkul">Hukum Pidana Militer & Peradilan Militer</td></tr>
-            <tr><td class="date-col">Selasa, 5 Mei 2026</td><td class="jam-col">14.30 – 16.10</td><td class="matkul">Filsafat Hukum</td></tr>
-            <tr><td class="date-col">Rabu, 6 Mei 2026</td><td class="jam-col">16.20 – 18.00</td><td class="matkul">Hukum Acara Mahkamah Konstitusi</td></tr>
-            <tr><td class="date-col">Kamis, 7 Mei 2026</td><td class="jam-col">10.20 – 12.00</td><td class="matkul">Kepemimpinan dan Kewirausahaan</td></tr>
+            <tr><td class="date-col">Senin, 27 April 2026</td><td>08.20 – 10.00</td><td class="matkul">Hukum Acara Pidana</td></tr>
+            <tr><td class="date-col">Selasa, 28 April 2026</td><td>08.20 – 10.00</td><td class="matkul">Hukum Acara Perdata</td></tr>
+            <tr><td class="date-col">Rabu, 29 April 2026</td><td>14.30 – 16.10</td><td class="matkul">Hukum Acara Peradilan Tata Usaha Negara</td></tr>
+            <tr><td class="date-col">Kamis, 30 April 2026</td><td>14.30 – 16.10</td><td class="matkul">Hukum Perjanjian / Kontrak</td></tr>
+            <tr><td class="date-col">Sabtu, 2 Mei 2026</td><td>10.20 – 12.00</td><td class="matkul">Legal Opinion dan Audit Hukum</td></tr>
+            <tr><td class="date-col">Senin, 4 Mei 2026</td><td>10.20 – 12.00</td><td class="matkul">Hukum Pidana Militer & Peradilan Militer</td></tr>
+            <tr><td class="date-col">Selasa, 5 Mei 2026</td><td>14.30 – 16.10</td><td class="matkul">Filsafat Hukum</td></tr>
+            <tr><td class="date-col">Rabu, 6 Mei 2026</td><td>16.20 – 18.00</td><td class="matkul">Hukum Acara Mahkamah Konstitusi</td></tr>
+            <tr><td class="date-col">Kamis, 7 Mei 2026</td><td>10.20 – 12.00</td><td class="matkul">Kepemimpinan dan Kewirausahaan</td></tr>
         </tbody>
     </table>
 </div>
 
 <script>
-    function updateClock() {
+    const jadwal = {
+        s2: [
+            { tgl: "18/4/2026", jam: "20.00 – 22.00", matkul: "Masak Masak" },
+            { tgl: "27/4/2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata" },
+            { tgl: "28/4/2026", jam: "14.30 – 16.10", matkul: "Hukum Pidana" },
+            { tgl: "29/4/2026", jam: "08.20 – 10.00", matkul: "Hukum Tata Negara" },
+            { tgl: "30/4/2026", jam: "10.20 – 12.00", matkul: "Hukum Administrasi Negara" },
+            { tgl: "4/5/2026", jam: "08.20 – 10.00", matkul: "Pengantar Tata Hukum Indonesia" },
+            { tgl: "5/5/2026", jam: "08.20 – 10.00", matkul: "Etika" },
+            { tgl: "6/5/2026", jam: "10.20 – 12.00", matkul: "Pendidikan Kewarganegaraan" }
+        ],
+        s4: [
+            { tgl: "27/4/2026", jam: "14.30 – 16.10", matkul: "Hukum Waris Islam" },
+            { tgl: "28/4/2026", jam: "10.20 – 12.00", matkul: "Kriminologi dan Viktimologi" },
+            { tgl: "29/4/2026", jam: "10.20 – 12.00", matkul: "Hukum Cyber" },
+            { tgl: "30/4/2026", jam: "08.20 – 10.00", matkul: "Hukum Konservasi" },
+            { tgl: "2/5/2026", jam: "08.20 – 10.00", matkul: "Hukum Ketenagakerjaan dan PHI" },
+            { tgl: "4/5/2026", jam: "14.30 – 16.10", matkul: "Hukum Perdata Internasional" },
+            { tgl: "5/5/2026", jam: "10.20 – 12.00", matkul: "Hukum Kepailitan dan Peradilan Niaga" },
+            { tgl: "6/5/2026", jam: "08.20 – 10.00", matkul: "Hukum Lembaga Pembiayaan" },
+            { tgl: "6/5/2026", jam: "14.30 – 16.10", matkul: "Hukum Perusahaan" },
+            { tgl: "7/5/2026", jam: "08.20 – 10.00", matkul: "Hukum Perdamaian Penyelesaian Sengketa" },
+            { tgl: "7/5/2026", jam: "14.30 – 16.10", matkul: "Hukum Internasional" }
+        ],
+        s6: [
+            { tgl: "27/4/2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Pidana" },
+            { tgl: "28/4/2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Perdata" },
+            { tgl: "29/4/2026", jam: "14.30 – 16.10", matkul: "Hukum Acara Peradilan Tata Usaha Negara" },
+            { tgl: "30/4/2026", jam: "14.30 – 16.10", matkul: "Hukum Perjanjian / Kontrak" },
+            { tgl: "2/5/2026", jam: "10.20 – 12.00", matkul: "Legal Opinion dan Audit Hukum" },
+            { tgl: "4/5/2026", jam: "10.20 – 12.00", matkul: "Hukum Pidana Militer & Peradilan Militer" },
+            { tgl: "5/5/2026", jam: "14.30 – 16.10", matkul: "Filsafat Hukum" },
+            { tgl: "6/5/2026", jam: "16.20 – 18.00", matkul: "Hukum Acara Mahkamah Konstitusi" },
+            { tgl: "7/5/2026", jam: "10.20 – 12.00", matkul: "Kepemimpinan dan Kewirausahaan" }
+        ]
+    };
+
+    function updateStatus() {
         const now = new Date();
+        const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        
         document.getElementById('date-now').innerText = now.toLocaleDateString('id-ID', options);
         document.getElementById('clock-now').innerText = now.toLocaleTimeString('id-ID');
+
+        ['s2', 's4', 's6'].forEach(sem => {
+            const examsToday = jadwal[sem].filter(e => e.tgl === dateStr);
+            const container = document.getElementById('content-' + sem);
+            
+            if (examsToday.length > 0) {
+                container.innerHTML = examsToday.map(e => `Jam : ${e.jam}<br>Mata Kuliah : ${e.matkul}`).join('<hr style="border:0;border-top:1px solid #eee;margin:5px 0">');
+            } else {
+                container.innerText = "Tidak ada jadwal ujian hari ini.";
+            }
+        });
     }
-    setInterval(updateClock, 1000);
-    updateClock();
+
+    setInterval(updateStatus, 1000);
+    updateStatus();
 </script>
 
 </body>
