@@ -9,16 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        :root { --primary: #1e3a8a; --accent: #dc2626; --bg: #f8fafc; --white: #ffffff; }
+        :root { --primary: #1e3a8a; --accent: #dc2626; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #1e293b; line-height: 1.6; }
         .container { max-width: 800px; margin: 0 auto; padding: 20px; }
         
         .header { text-align: center; padding: 30px 0; background: var(--primary); color: white; border-radius: 0 0 30px 30px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .header h1 { font-size: 24px; font-weight: 800; margin: 0; letter-spacing: 1px; }
         
-        /* WAKTU TERKINI */
-        .live-clock-box { text-align: center; background: #ffffff; padding: 10px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .live-clock-box b { color: var(--primary); font-size: 16px; }
+        /* WAKTU TERKINI TANPA LABEL */
+        .live-clock-box { text-align: center; background: #ffffff; padding: 12px; border-radius: 15px; margin-bottom: 20px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .live-clock-box b { color: var(--primary); font-size: 18px; font-weight: 800; }
 
         .nb-header { background: #fff1f2; color: #be123c; padding: 12px; border-radius: 12px; font-size: 12px; font-weight: 700; border: 1px solid #ffe4e6; margin: 15px auto; max-width: 90%; text-align: center; }
 
@@ -28,20 +28,30 @@
         .today-alert .info span { font-size: 14px; font-weight: 700; color: #1e293b; }
 
         .semester-section { margin-bottom: 50px; }
-        .semester-title { font-size: 20px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 10px; }
+        .semester-title { font-size: 20px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 6px solid var(--primary); padding-left: 12px; text-transform: uppercase; }
         
-        .table-container { background: white; border-radius: 16px; overflow-x: auto; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        /* TABEL PROFESIONAL DENGAN PEMBATAS TEGAS */
+        .table-container { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); border: 2px solid var(--border-color); }
         table { width: 100%; border-collapse: collapse; text-align: left; min-width: 500px; }
-        th { background: #1e3a8a; padding: 15px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #ffffff; }
-        td { padding: 14px 15px; border-top: 1px solid #f1f5f9; font-size: 14px; vertical-align: middle; }
         
-        tr:nth-child(even) { background-color: #fcfcfd; }
+        th { background: var(--primary); padding: 15px; font-size: 12px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
+        
+        td { padding: 14px 15px; border: 1px solid var(--border-color); font-size: 14px; vertical-align: middle; }
+        
+        /* KOLOM TANGGAL */
         .date-cell { font-weight: 700; color: #334155; width: 180px; background: #f8fafc; }
-        .time-cell { color: #475569; font-weight: 600; font-size: 13px; }
-        .subject-cell { font-weight: 700; color: #1e40af; }
+        
+        /* KOLOM JAM PROFESIONAL */
+        .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 700; font-size: 13px; text-align: center; width: 130px; }
+        
+        /* KOLOM MATA KULIAH */
+        .subject-cell { font-weight: 700; color: #1e40af; background: #ffffff; }
 
-        .motivation-box { text-align: center; margin-top: 40px; padding: 20px; border-top: 2px solid #e2e8f0; font-style: italic; color: #64748b; font-size: 14px; }
-        .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 20px; min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; }
+        tr:hover { background-color: #f8fafc; }
+
+        .motivation-box { text-align: center; margin-top: 40px; padding: 25px; border-top: 2px dashed var(--border-color); font-style: italic; color: #475569; font-size: 14px; font-weight: 500; }
+        
+        .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; }
         .footer { text-align: center; font-size: 11px; color: #94a3b8; padding: 20px 0 100px; }
     </style>
 </head>
@@ -54,7 +64,7 @@
 
 <div class="container">
     <div class="live-clock-box">
-        Waktu Terkini: <b id="current-date-time">Memuat waktu...</b>
+        <b id="current-date-time">Memuat waktu...</b>
     </div>
 
     <div class="nb-header">
@@ -163,9 +173,8 @@
             
             for (let i = 0; i < data.length; i++) {
                 let row = `<tr>`;
-                // Logika Gabung Baris Tanggal yang Sama
                 if (i > 0 && data[i].tgl === data[i-1].tgl) {
-                    // Jika tanggal sama dengan sebelumnya, jangan buat kolom tanggal baru
+                    // Skip date cell
                 } else {
                     let count = 1;
                     while(i + count < data.length && data[i+count].tgl === data[i].tgl) {
@@ -195,6 +204,9 @@
             if (matching.length > 0) {
                 alertElem.innerHTML = matching.map(m => `<b>${m.matkul}</b> (${m.jam})`).join(" & ");
                 document.getElementById(`alert-${sem}`).style.background = "#dcfce7";
+            } else {
+                alertElem.innerText = "Tidak ada jadwal ujian hari ini.";
+                document.getElementById(`alert-${sem}`).style.background = "#fffbeb";
             }
         });
     }
