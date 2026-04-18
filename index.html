@@ -18,15 +18,15 @@
         #date-now { font-size: 16px; color: #555; margin-bottom: 5px; }
         #clock-now { font-size: 24px; font-weight: bold; color: #0d47a1; margin: 0; }
 
-        .section-title { padding: 15px 20px; background: #f8f9fa; margin: 0; border-left: 5px solid #0d47a1; font-size: 18px; color: #0d47a1; font-weight: bold; border-bottom: 1px solid #dee2e6; }
+        .section-title { padding: 15px 20px; background: #fff; margin: 0; border-left: 5px solid #0d47a1; font-size: 18px; color: #0d47a1; }
 
         /* Style Tabel */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        th { background-color: #f1f3f4; color: #333; font-size: 12px; text-transform: uppercase; padding: 12px; border-bottom: 2px solid #dee2e6; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background-color: #f8f9fa; color: #333; font-size: 13px; text-transform: uppercase; padding: 12px; border-bottom: 2px solid #dee2e6; }
         td { padding: 15px; border-bottom: 1px solid #eee; font-size: 14px; color: #444; text-align: center; }
         .matkul { text-align: left; font-weight: 600; color: #1565c0; }
         
-        .row-highlight { background-color: #fffde7; }
+        .badge-today { background: #fff3e0; padding: 10px; margin: 10px; border-radius: 8px; border: 1px solid #ffe0b2; text-align: center; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -42,30 +42,13 @@
         <div id="clock-now">00:00:00</div>
     </div>
 
-    <h2 class="section-title">📚 SEMESTER II</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>TANGGAL</th>
-                <th>JAM</th>
-                <th>MATA KULIAH</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Senin, 4 Mei 2026</td>
-                <td>08.00 – 09.40</td>
-                <td class="matkul">Pendidikan Agama</td>
-            </tr>
-            <tr class="row-highlight">
-                <td>Senin, 4 Mei 2026</td>
-                <td>16.30 – 17.00</td>
-                <td class="matkul">HAM (Hak Asasi Manusia)</td>
-            </tr>
-        </tbody>
-    </table>
-
     <h2 class="section-title">📚 SEMESTER IV</h2>
+
+    <div class="badge-today">
+        <strong>UJIAN HARI INI:</strong><br>
+        <span id="exam-status">Mengecek jadwal...</span>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -80,6 +63,7 @@
                 <td>14.30 – 16.10</td>
                 <td class="matkul">Hukum Internasional</td>
             </tr>
+
             <tr>
                 <td rowspan="2"><b>Rabu, 6 Mei 2026</b></td>
                 <td>08.20 – 10.00</td>
@@ -89,6 +73,7 @@
                 <td>14.30 – 16.10</td>
                 <td class="matkul">Hukum Perjanjian</td>
             </tr>
+
             <tr>
                 <td rowspan="2"><b>Kamis, 7 Mei 2026</b></td>
                 <td>08.20 – 10.00</td>
@@ -105,14 +90,23 @@
 <script>
     function updateDateTime() {
         const now = new Date();
+        
+        // Format Tanggal Indonesia
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('date-now').innerText = now.toLocaleDateString('id-ID', dateOptions);
+        
+        // Format Jam
         document.getElementById('clock-now').innerText = now.toLocaleTimeString('id-ID');
+
+        // Logika sederhana untuk status ujian hari ini (opsional)
+        // Kamu bisa kembangkan ini nanti
+        document.getElementById('exam-status').innerText = "Tidak ada jadwal ujian hari ini.";
     }
+
+    // Update setiap detik
     setInterval(updateDateTime, 1000);
     updateDateTime();
 </script>
 
 </body>
 </html>
-
