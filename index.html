@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jadwal UTS FH UHN 2026</title>
+    
     <script type='text/javascript' src='//pl29170546.profitablecpmratenetwork.com/31/90/9e/31909e2c4790b086ed9fe5590abcfe13.js'></script>
     
     <style>
@@ -29,15 +30,15 @@
         .matkul { text-align: left; font-weight: 600; color: #0d47a1; }
         .date-col { font-weight: bold; background-color: #fafafa; width: 30%; }
 
-        /* Iklan Placeholder */
-        .ad-container { text-align: center; margin: 20px 0; padding: 10px; }
+        /* Wadah Iklan Native di Bawah */
+        .ad-bottom-container { text-align: center; margin: 20px auto; padding: 10px; max-width: 900px; background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <h1>JADWAL UTS SEMESTER GENAP</h1>
+        <h1>JADWAL UJIAN TENGAH SEMESTER</h1>
         <p>Universitas HKBP Nommensen - Fakultas Hukum</p>
     </div>
 
@@ -107,12 +108,13 @@
     </table>
 </div>
 
-<div class="ad-container">
+<div class="ad-bottom-container">
     <script async="async" data-cfasync="false" src="//pl29170546.profitablecpmratenetwork.com/31909e2c4790b086ed9fe5590abcfe13/invoke.js"></script>
     <div id="container-31909e2c4790b086ed9fe5590abcfe13"></div>
 </div>
 
 <script>
+    // Data Jadwal untuk Deteksi Otomatis
     const jadwal = {
         s2: [
             { tgl: "27/4/2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata" },
@@ -149,7 +151,7 @@
         ]
     };
 
-    function updateStatus() {
+    function updateDateTimeAndStatus() {
         const now = new Date();
         const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -157,6 +159,7 @@
         document.getElementById('date-now').innerText = now.toLocaleDateString('id-ID', options);
         document.getElementById('clock-now').innerText = now.toLocaleTimeString('id-ID');
 
+        // Update Status Ujian per Semester
         ['s2', 's4', 's6'].forEach(sem => {
             const examsToday = jadwal[sem].filter(e => e.tgl === dateStr);
             const container = document.getElementById('content-' + sem);
@@ -169,8 +172,8 @@
         });
     }
 
-    setInterval(updateStatus, 1000);
-    updateStatus();
+    setInterval(updateDateTimeAndStatus, 1000);
+    updateDateTimeAndStatus();
 </script>
 
 </body>
