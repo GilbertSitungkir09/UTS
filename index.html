@@ -28,10 +28,10 @@
         .bookmark-card h3 { margin: 0 0 10px 0; color: #1d4ed8; font-size: 15px; display: flex; align-items: center; gap: 8px; }
         .bookmark-card ul { margin: 0; padding-left: 20px; font-size: 12px; color: #1e40af; font-weight: 600; }
 
-        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 12px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
-        .today-alert .icon { font-size: 20px; }
-        .today-alert .info b { color: #92400e; display: block; font-size: 11px; text-transform: uppercase; }
-        .today-alert .info span { font-size: 13px; font-weight: 700; color: #1e293b; }
+        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 12px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; min-height: 80px; }
+        .today-alert .icon { font-size: 24px; }
+        .today-alert .info b { color: #92400e; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }
+        .today-alert .info span { font-size: 13px; font-weight: 700; color: #1e293b; display: block; line-height: 1.4; }
 
         .semester-section { margin-top: 30px; margin-bottom: 50px; }
         .semester-title { font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 12px; }
@@ -145,8 +145,8 @@
 <script>
     const jadwalData = {
         sem2: [
-            { tgl: "Senin, 20 April 2026", jam: "14.20 – 16.00", matkul: "Hukum Perdata", end: "12:00" },
-            { tgl: "Selasa, 21 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata", end: "12:00" },
+            { tgl: "Senin, 20 April 2026", jam: "14.20 – 16.00", matkul: "Hukum taurat", end: "12:00" },
+            { tgl: "Selasa, 21 April 2026", jam: "10.20 – 12.00", matkul: "Hukum rimba", end: "12:00" },
             { tgl: "Senin, 27 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata", end: "12:00" },
             { tgl: "Selasa, 28 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Pidana", end: "16:10" },
             { tgl: "Rabu, 29 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Tata Negara", end: "10:00" },
@@ -156,6 +156,8 @@
             { tgl: "Rabu, 6 Mei 2026", jam: "10.20 – 12.00", matkul: "Pendidikan Kewarganegaraan", end: "12:00" }
         ],
         sem4: [
+            { tgl: "Senin, 20 April 2026", jam: "14.20 – 16.00", matkul: "Hukum Perdata", end: "16:00" },
+            { tgl: "Selasa, 21 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata", end: "12:00" },
             { tgl: "Senin, 27 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Waris Islam", end: "16:10" },
             { tgl: "Selasa, 28 April 2026", jam: "10.20 – 12.00", matkul: "Kriminologi dan Viktimologi", end: "12:00" },
             { tgl: "Rabu, 29 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Cyber", end: "12:00" },
@@ -218,37 +220,52 @@
             const iconElem = document.getElementById(`icon-${sem}`);
             
             if (matching.length > 0) {
-                const allFinished = matching.every(m => timeStr > m.end);
+                // Filter ujian yang sudah selesai
+                const finishedMatkul = matching.filter(m => timeStr > m.end);
+                // Filter ujian yang belum selesai
+                const upcomingMatkul = matching.filter(m => timeStr <= m.end);
 
-                if (allFinished) {
-                    let nextJadwal = "";
+                if (upcomingMatkul.length === 0) {
+                    // JIKA SEMUA UJIAN HARI INI SUDAH LEWAT
+                    let matkulSelesaiNames = matching.map(m => m.matkul).join(" & ");
+                    
+                    // Cari jadwal berikutnya (ujian selanjutnya)
+                    let nextItem = null;
+                    const todayDateObj = new Date(wibTime.getFullYear(), wibTime.getMonth(), wibTime.getDate());
+                    
                     for(let i = 0; i < allData.length; i++) {
-                        if (new Date(allData[i].tgl.split(',')[1]) > new Date(dateStr.split(',')[1])) {
-                             nextJadwal = allData[i].matkul;
-                             break;
+                        const parts = allData[i].tgl.split(', ')[1].split(' ');
+                        const d = parseInt(parts[0]);
+                        const mStr = parts[1];
+                        const y = parseInt(parts[2]);
+                        const months = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+                        const m = months.indexOf(mStr);
+                        const itemDate = new Date(y, m, d);
+                        
+                        if (itemDate > todayDateObj) {
+                            nextItem = allData[i];
+                            break;
                         }
                     }
 
-                    let matkulSelesai = matching.map(m => m.matkul).join(" & ");
-                    let pesanNext = nextJadwal ? `Ujian Selanjutnya: <b>${nextJadwal}</b>. Persiapkan diri Anda! 🔥` : "<b>Tolong Jaga Kesehatan Anda</b>";
+                    let nextText = nextItem ? `Ujian Selanjutnya: <b style="color:#1e40af;">${nextItem.matkul}</b>. Persiapkan diri Anda! 🔥` : "<b>Tolong Jaga Kesehatan Anda</b>";
                     
-                    alertElem.innerHTML = `Ujian <b>${matkulSelesai}</b> Telah Usai, Segera Istirahat Dan Ujian Untuk Hari Selanjutnya. <br><span style="color:#065f46; font-size:12px;">${pesanNext}</span>`;
+                    alertElem.innerHTML = `Status Ujian: <b>${matkulSelesaiNames}</b> Telah Usai, Segera Istirahat Dan Ujian Untuk Hari Selanjutnya.<br><span style="margin-top:5px; display:block; font-size:12px; color:#065f46;">${nextText}</span>`;
                     alertBox.style.background = "#ecfdf5";
                     alertBox.style.borderColor = "#10b981";
                     iconElem.innerText = "✅";
                 } else {
-                    alertElem.innerHTML = matching.map(m => {
-                        const isPast = timeStr > m.end;
-                        return isPast ? `<del>${m.matkul}</del>` : `<b>${m.matkul}</b> (${m.jam})`;
-                    }).join(" & ");
-                    alertBox.style.background = "#dcfce7";
-                    alertBox.style.borderColor = "#22c55e";
+                    // JIKA MASIH ADA UJIAN YANG BELUM SELESAI HARI INI
+                    let currentNames = upcomingMatkul.map(m => `<b>${m.matkul}</b> (${m.jam})`).join(" & ");
+                    alertElem.innerHTML = `Status Ujian: ${currentNames}`;
+                    alertBox.style.background = "#fffbeb";
+                    alertBox.style.borderColor = "#fef3c7";
                     iconElem.innerText = "📖";
                 }
             } else {
                 alertElem.innerText = "Tidak ada jadwal ujian hari ini.";
-                alertBox.style.background = "#fffbeb";
-                alertBox.style.borderColor = "#fef3c7";
+                alertBox.style.background = "#f8fafc";
+                alertBox.style.borderColor = "#cbd5e1";
                 iconElem.innerText = "📖";
             }
         });
