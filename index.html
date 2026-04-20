@@ -2,170 +2,263 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal UTS FH UHN 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="referrer" content="always">
+    <title>Jadwal UTS FH UHN</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 10px; color: #333; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #2c3e50; margin-bottom: 5px; }
-        .date-info { text-align: center; font-size: 0.95em; color: #d32f2f; font-weight: bold; margin-bottom: 15px; background: #ffebee; padding: 5px; border-radius: 5px; }
+        :root { --primary: #1e3a8a; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; }
+        html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #1e293b; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
+        .header { text-align: center; padding: 25px 15px; background: var(--primary); color: white; border-radius: 0 0 25px 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header h1 { font-size: 18px; font-weight: 800; margin: 0; letter-spacing: 0.5px; }
         
+        .live-clock-box { text-align: center; background: #ffffff; padding: 12px; border-radius: 12px; margin-bottom: 25px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .live-clock-box b { color: var(--primary); font-size: 14px; font-weight: 800; }
+
+        /* NB DENGAN GRADASI KUNING MERAH */
         .nb-header { 
-            background: #ffeb3b; padding: 10px; border-radius: 8px; font-weight: bold; 
-            text-align: center; margin-bottom: 15px; font-size: 0.85em; border: 1px solid #fbc02d;
+            background: linear-gradient(90deg, #facc15 0%, #ef4444 100%); 
+            color: white; 
+            padding: 15px; 
+            border-radius: 12px; 
+            font-size: 12px; 
+            font-weight: 800; 
+            margin: 25px auto; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
-        .ad-space { text-align: center; margin: 15px 0; min-height: 50px; }
-
-        .today-box { background: #e8f5e9; border: 2px solid #4caf50; padding: 15px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .today-box h3 { margin-top: 0; color: #2e7d32; text-align: center; border-bottom: 2px solid #4caf50; padding-bottom: 8px; }
-        
-        /* Gaya Tips Bookmark */
-        .bookmark-box { margin: 20px 0; padding: 15px; border-radius: 12px; background: #e3f2fd; border: 1px solid #90caf9; text-align: left; font-size: 0.85em; color: #0d47a1; line-height: 1.5; }
-        
-        .semester-group { margin-bottom: 25px; }
-        .semester-title { background: #2c3e50; color: white; padding: 10px 15px; border-radius: 6px; margin-bottom: 10px; font-size: 1.1em; font-weight: bold; }
-        
-        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 0.9em; background: white; }
-        th, td { border: 1px solid #ccc; padding: 12px 10px; text-align: left; }
-        th { background-color: #eeeeee; color: #2c3e50; font-weight: bold; text-transform: uppercase; font-size: 0.8em; }
-        
-        .col-jam { font-weight: 800; color: #000; white-space: nowrap; }
-        .col-matkul { font-weight: 600; color: #2c3e50; }
-        
-        .highlight { background-color: #fff9c4 !important; border: 2.5px solid #fbc02d !important; }
-        .highlight td { font-weight: bold; }
-
-        .footer-message { margin-top: 30px; padding: 20px; border-top: 2px dashed #2c3e50; text-align: center; line-height: 1.6; background: #fdfdfd; border-radius: 0 0 12px 12px; }
-        .dedication { color: #444; margin-bottom: 15px; font-size: 0.95em; }
-        .motivation { font-weight: bold; color: #c62828; font-size: 1.1em; display: block; margin-top: 10px; }
-
-        @media (max-width: 600px) {
-            table { font-size: 0.8em; }
-            th, td { padding: 8px 5px; }
-            .semester-title { font-size: 1em; }
+        /* TIPS BOOKMARK DESAIN MENARIK */
+        .bookmark-card {
+            background: #eff6ff;
+            border-left: 6px solid #3b82f6;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
         }
+        .bookmark-card h3 { 
+            margin: 0 0 10px 0; 
+            color: #1d4ed8; 
+            font-size: 15px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        .bookmark-card ul { margin: 0; padding-left: 20px; font-size: 12px; color: #1e40af; font-weight: 600; }
+        .bookmark-card li { margin-bottom: 5px; }
+
+        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 12px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+        .today-alert .icon { font-size: 20px; }
+        .today-alert .info b { color: #92400e; display: block; font-size: 11px; text-transform: uppercase; }
+        .today-alert .info span { font-size: 13px; font-weight: 700; color: #1e293b; }
+
+        .semester-section { margin-top: 30px; margin-bottom: 50px; }
+        .semester-title { font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 12px; }
+        
+        .table-wrapper { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 10px; background: white; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; min-width: 580px; table-layout: fixed; }
+        th { background: var(--primary); padding: 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
+        td { padding: 10px; border: 1px solid var(--border-color); font-size: 12px; vertical-align: middle; }
+        
+        .date-cell { font-weight: 700; color: #334155; width: 140px; background: #f8fafc; text-align: center; }
+        .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 800; font-size: 11px; text-align: center; width: 100px; }
+        .subject-cell { font-weight: 700; color: #1e40af; background: #ffffff; }
+
+        .scroll-hint { font-size: 9px; color: #94a3b8; text-align: right; margin-bottom: 5px; font-style: italic; }
+        
+        /* MOTIVASI DENGAN WARNA MENARIK */
+        .motivation-box { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding: 25px; 
+            border-radius: 20px;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+        }
+        .dedication-text { color: #64748b; font-size: 13px; margin-bottom: 15px; line-height: 1.6; }
+        .quote-text { font-weight: 800; color: #1e3a8a; font-size: 14px; display: block; margin-top: 10px; }
+        .water-reminder { color: #0ea5e9; font-weight: 700; font-size: 12px; margin-top: 5px; display: block; }
+
+        .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 20px; padding: 15px; text-align: center; }
+        .footer { padding-bottom: 80px; }
     </style>
 </head>
 <body>
 
+<div class="header">
+    <h1>JADWAL UJIAN TENGAH SEMESTER</h1>
+    <p style="font-size: 12px;">Universitas HKBP Nommensen Medan - FH</p>
+</div>
+
 <div class="container">
-    <h2>Portal Jadwal UTS FH UHN</h2>
-    <div id="current-date" class="date-info">Memuat waktu...</div>
+    <div class="live-clock-box">
+        <b id="current-date-time">Sinkronisasi Waktu WIB...</b>
+    </div>
 
     <div class="nb-header">
         ⚠️ NB : HARAP TELITI KEMBALI DENGAN MATA KULIAH ATAS ATAUPUN BAWAH YANG ANDA AMBIL
     </div>
 
-    <div class="ad-space">
-        <script async="async" data-cfasync="false" src="//pl231456.highperformancegate.com/d0335f1a099b9842202fbcf0493e76cc/invoke.js"></script>
+    <div class="bookmark-card">
+        <h3>📌 Tips Agar Tidak Ketinggalan</h3>
+        <ul>
+            <li><b>Android:</b> Klik titik tiga (⋮) di pojok kanan atas Chrome, pilih <b>"Tambahkan ke Layar Utama"</b>.</li>
+            <li><b>iPhone:</b> Klik ikon bagi (panah atas) di Safari, pilih <b>"Tambah ke Layar Utama"</b>.</li>
+        </ul>
+    </div>
+
+    <div class="semester-section">
+        <div class="semester-title">📚 SEMESTER II</div>
+        <div class="today-alert" id="alert-sem2">
+            <div class="icon">📖</div>
+            <div class="info"><b>Ujian Hari Ini:</b> <span id="text-sem2">Tidak ada jadwal.</span></div>
+        </div>
+        <div class="scroll-hint">Geser tabel ke samping →</div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th style="width: 140px;">Hari, Tanggal</th><th style="width: 100px;">Jam</th><th>Mata Kuliah</th></tr></thead>
+                <tbody id="body-sem2"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="semester-section">
+        <div class="semester-title">📚 SEMESTER IV</div>
+        <div class="today-alert" id="alert-sem4">
+            <div class="icon">📖</div>
+            <div class="info"><b>Ujian Hari Ini:</b> <span id="text-sem4">Tidak ada jadwal.</span></div>
+        </div>
+        <div class="scroll-hint">Geser tabel ke samping →</div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th style="width: 140px;">Hari, Tanggal</th><th style="width: 100px;">Jam</th><th>Mata Kuliah</th></tr></thead>
+                <tbody id="body-sem4"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="semester-section">
+        <div class="semester-title">📚 SEMESTER VI</div>
+        <div class="today-alert" id="alert-sem6">
+            <div class="icon">📖</div>
+            <div class="info"><b>Ujian Hari Ini:</b> <span id="text-sem6">Tidak ada jadwal.</span></div>
+        </div>
+        <div class="scroll-hint">Geser tabel ke samping →</div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th style="width: 140px;">Hari, Tanggal</th><th style="width: 100px;">Jam</th><th>Mata Kuliah</th></tr></thead>
+                <tbody id="body-sem6"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="motivation-box">
+        <div class="dedication-text">
+            Web ini didedikasikan untuk teman-teman FH UHN agar tidak ada lagi cerita ketinggalan ujian karena salah lihat jadwal. 
+            Belajar dari pengalaman rekan kita, semoga portal ini membantu kita lulus tepat waktu.
+        </div>
+        <span class="quote-text">"Hasil tidak akan mengkhianati usaha. Selamat berjuang di UTS, kerjakan dengan jujur dan berikan yang terbaik. GOOD LUCK🥰"</span>
+        <span class="water-reminder">💧 Jangan Lupa Minum Air Putih</span>
+    </div>
+
+    <div class="ad-banner-bottom">
+        <script async="async" data-cfasync="false" src="https://ferocitycandour.com/d0335f1a099b9842202fbcf0493e76cc/invoke.js"></script>
         <div id="container-d0335f1a099b9842202fbcf0493e76cc"></div>
     </div>
-
-    <div id="today-schedule" class="today-box">
-        <h3>📅 UJIAN HARI INI</h3>
-        <div id="content-today" style="font-size: 1.05em; line-height: 1.5;">Mencari jadwal...</div>
-    </div>
-
-    <div class="bookmark-box">
-        <p style="margin-top: 0; font-weight: bold; text-align: center; font-size: 1em;">📌 TIPS: Simpan Web Ini di Layar Utama HP</p>
-        <ul style="padding-left: 20px; margin-bottom: 0;">
-            <li><b>Android (Chrome):</b> Klik titik tiga <b>(⋮)</b> di pojok kanan atas, lalu pilih <b>"Tambahkan ke Layar Utama"</b>.</li>
-            <li style="margin-top: 8px;"><b>iPhone (Safari):</b> Klik ikon bagikan <b>(kotak panah atas)</b>, lalu pilih <b>"Tambah ke Layar Utama"</b>.</li>
-        </ul>
-        <p style="text-align: center; margin-top: 10px; font-style: italic;">"Biar besok pagi nggak ribet cari link lagi di grup WA yang udah tenggelam!"</p>
-    </div>
-
-    <div class="semester-group">
-        <div class="semester-title">📚 SEMESTER II</div>
-        <table>
-            <tr><th>Hari/Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr>
-            <tr id="row-S2-27"><td>Senin, 27 April</td><td class="col-jam">10.20 – 12.00</td><td class="col-matkul">Hukum Perdata</td></tr>
-            <tr id="row-S2-28"><td>Selasa, 28 April</td><td class="col-jam">10.20 – 12.00</td><td class="col-matkul">Hukum Agama</td></tr>
-            <tr id="row-S2-29"><td>Rabu, 29 April</td><td class="col-jam">10.20 – 12.00</td><td class="col-matkul">Hukum Tata Negara</td></tr>
-            <tr id="row-S2-30"><td>Kamis, 30 April</td><td class="col-jam">10.20 – 12.00</td><td class="col-matkul">Hukum Pidana</td></tr>
-            <tr id="row-S2-04"><td>Senin, 04 Mei</td><td class="col-jam">10.20 – 12.00</td><td class="col-matkul">Hukum Masyarakat</td></tr>
-            <tr id="row-S2-05"><td>Selasa, 05 Mei</td><td class="col-jam">10.20 – 12.00</td><td class="col-matkul">Bahasa Inggris Hukum</td></tr>
-        </table>
-    </div>
-
-    <div class="semester-group">
-        <div class="semester-title">📚 SEMESTER IV</div>
-        <table>
-            <tr><th>Hari/Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr>
-            <tr id="row-S4-27"><td>Senin, 27 April</td><td class="col-jam">08.00 – 09.40</td><td class="col-matkul">Hukum Waris Islam</td></tr>
-            <tr id="row-S4-28"><td>Selasa, 28 April</td><td class="col-jam">08.00 – 09.40</td><td class="col-matkul">Hukum Pajak</td></tr>
-            <tr id="row-S4-29"><td>Rabu, 29 April</td><td class="col-jam">08.00 – 09.40</td><td class="col-matkul">Hukum Internasional</td></tr>
-            <tr id="row-S4-30"><td>Kamis, 30 April</td><td class="col-jam">08.00 – 09.40</td><td class="col-matkul">Hukum Lingkungan</td></tr>
-            <tr id="row-S4-04"><td>Senin, 04 Mei</td><td class="col-jam">08.00 – 09.40</td><td class="col-matkul">Hukum Perburuhan</td></tr>
-        </table>
-    </div>
-
-    <div class="semester-group">
-        <div class="semester-title">📚 SEMESTER VI</div>
-        <table>
-            <tr><th>Hari/Tanggal</th><th>Jam</th><th>Mata Kuliah</th></tr>
-            <tr id="row-S6-27"><td>Senin, 27 April</td><td class="col-jam">08.00 – 09.40</td><td class="col-matkul">Hukum Acara Pidana</td></tr>
-            <tr id="row-S6-28"><td>Selasa, 28 April</td><td class="col-jam">08.00 – 09.40</td><td class="col-matkul">Hukum Perbankan</td></tr>
-            <tr id="row-S6-29"><td>Rabu, 29 April</td><td class="col-jam">08.00 – 09.40</td><td class="col-matkul">Hukum Dagang</td></tr>
-        </table>
-    </div>
-
-    <div class="footer-message">
-        <p class="dedication">
-            Web ini didedikasikan untuk teman-teman FH UHN agar tidak ada lagi cerita ketinggalan ujian karena salah lihat jadwal. 
-            Belajar dari pengalaman salah satu teman kita yang pernah terlambat karena kendala tersebut, semoga portal sederhana 
-            ini bisa membantu kita semua lulus tepat waktu. Semangat UTS-nya!
-        </p>
-        <span class="motivation">
-            Hasil tidak akan mengkhianati usaha. Selamat berjuang di UTS, kerjakan dengan jujur dan berikan yang terbaik. GOOD LUCK🥰
-        </span>
-    </div>
-
+    <div class="footer"></div>
 </div>
 
+<script type='text/javascript' src='https://pl29170546.profitablecpmratenetwork.com/31/90/9e/31909e2c4790b086ed9fe5590abcfe13.js'></script>
+
 <script>
-    function updateClock() {
+    const jadwalData = {
+        sem2: [
+            { tgl: "Senin, 27 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata" },
+            { tgl: "Selasa, 28 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Pidana" },
+            { tgl: "Rabu, 29 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Tata Negara" },
+            { tgl: "Kamis, 30 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Administrasi Negara" },
+            { tgl: "Senin, 4 Mei 2026", jam: "08.20 – 10.00", matkul: "Pengantar Tata Hukum Indonesia" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "08.20 – 10.00", matkul: "Etika" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "10.20 – 12.00", matkul: "Pendidikan Kewarganegaraan" }
+        ],
+        sem4: [
+            { tgl: "Senin, 27 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Waris Islam" },
+            { tgl: "Selasa, 28 April 2026", jam: "10.20 – 12.00", matkul: "Kriminologi dan Viktimologi" },
+            { tgl: "Rabu, 29 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Cyber" },
+            { tgl: "Kamis, 30 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Konservasi" },
+            { tgl: "Sabtu, 2 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Ketenagakerjaan dan PHI" },
+            { tgl: "Senin, 4 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Perdata Internasional" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "10.20 – 12.00", matkul: "Hukum Kepailitan dan Peradilan Niaga" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Lembaga Pembiayaan" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Perusahaan" },
+            { tgl: "Kamis, 7 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Perdamaian Penyelesaian Sengketa" },
+            { tgl: "Kamis, 7 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Internasional" }
+        ],
+        sem6: [
+            { tgl: "Senin, 27 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Pidana" },
+            { tgl: "Selasa, 28 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Perdata" },
+            { tgl: "Rabu, 29 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Acara Peradilan Tata Usaha Negara" },
+            { tgl: "Kamis, 30 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Perjanjian / Kontrak" },
+            { tgl: "Sabtu, 2 Mei 2026", jam: "10.20 – 12.00", matkul: "Legal Opinion dan Audit Hukum" },
+            { tgl: "Senin, 4 Mei 2026", jam: "10.20 – 12.00", matkul: "Hukum Pidana Militer & Peradilan Militer" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "14.30 – 16.10", matkul: "Filsafat Hukum" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "16.20 – 18.00", matkul: "Hukum Acara Mahkamah Konstitusi" },
+            { tgl: "Kamis, 7 Mei 2026", jam: "10.20 – 12.00", matkul: "Kepemimpinan dan Kewirausahaan" }
+        ]
+    };
+
+    function renderTabel() {
+        Object.keys(jadwalData).forEach(sem => {
+            const tbody = document.getElementById(`body-${sem}`);
+            const data = jadwalData[sem];
+            for (let i = 0; i < data.length; i++) {
+                let row = `<tr>`;
+                if (i > 0 && data[i].tgl === data[i-1].tgl) { } else {
+                    let count = 1;
+                    while(i + count < data.length && data[i+count].tgl === data[i].tgl) { count++; }
+                    row += `<td class="date-cell" rowspan="${count}">${data[i].tgl}</td>`;
+                }
+                row += `<td class="time-cell">${data[i].jam}</td><td class="subject-cell">${data[i].matkul}</td></tr>`;
+                tbody.innerHTML += row;
+            }
+        });
+    }
+
+    function checkWIB() {
         const now = new Date();
         const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
         const wibTime = new Date(utc + (3600000 * 7));
+
+        const optionsDate = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        const dateStr = wibTime.toLocaleDateString('id-ID', optionsDate);
+        const timeStr = wibTime.toLocaleTimeString('id-ID', { hour12: false });
         
-        const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-        document.getElementById('current-date').innerText = wibTime.toLocaleDateString('id-ID', options) + ' WIB';
+        document.getElementById('current-date-time').innerText = `${dateStr} | ${timeStr} WIB`;
 
-        const date = wibTime.getDate();
-        const month = wibTime.getMonth(); 
-
-        let todayHTML = "";
-        document.querySelectorAll('tr').forEach(tr => tr.classList.remove('highlight'));
-
-        if (month === 3 || month === 4) { 
-            const key = (date < 10 ? '0' : '') + date;
-            const ids = ['row-S2-' + key, 'row-S4-' + key, 'row-S6-' + key];
+        Object.keys(jadwalData).forEach(sem => {
+            const matching = jadwalData[sem].filter(item => item.tgl.includes(dateStr));
+            const alertElem = document.getElementById(`text-${sem}`);
+            const alertBox = document.getElementById(`alert-${sem}`);
             
-            let found = false;
-            ids.forEach(id => {
-                const els = document.querySelectorAll(`[id='${id}']`);
-                els.forEach(el => {
-                    el.classList.add('highlight');
-                    const sem = id.includes('S2') ? 'II' : id.includes('S4') ? 'IV' : 'VI';
-                    todayHTML += `<b>Sem ${sem}:</b> ${el.cells[2].innerText} <span style="color:red;">(${el.cells[1].innerText})</span><br>`;
-                    found = true;
-                });
-            });
-            if (!found) todayHTML = "Tidak ada ujian hari ini.";
-        } else {
-            todayHTML = "Belum memasuki periode ujian.";
-        }
-
-        document.getElementById('content-today').innerHTML = todayHTML;
+            if (matching.length > 0) {
+                alertElem.innerHTML = matching.map(m => `<b>${m.matkul}</b> (${m.jam})`).join(" & ");
+                alertBox.style.background = "#dcfce7";
+                alertBox.style.borderColor = "#22c55e";
+            } else {
+                alertElem.innerText = "Tidak ada jadwal ujian hari ini.";
+                alertBox.style.background = "#fffbeb";
+                alertBox.style.borderColor = "#fef3c7";
+            }
+        });
     }
 
-    setInterval(updateClock, 1000);
-    updateClock();
+    window.onload = () => { renderTabel(); checkWIB(); setInterval(checkWIB, 1000); };
 </script>
-
-<script type='text/javascript' src='//pl23157845.highperformancegate.com/33/c2/78/33c2787883398c8c88c88c8c8c.js'></script>
-
 </body>
 </html>
