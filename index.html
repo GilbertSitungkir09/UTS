@@ -83,7 +83,7 @@
         <div class="semester-title">📚 SEMESTER II</div>
         <div class="today-alert" id="alert-sem2">
             <div class="icon" id="icon-sem2">📖</div>
-            <div class="info"><b>Ujian Hari Ini:</b> <span id="text-sem2">Tidak ada jadwal.</span></div>
+            <div class="info"><b>Status Ujian:</b> <span id="text-sem2">Memuat jadwal...</span></div>
         </div>
         <div class="table-wrapper">
             <table>
@@ -97,7 +97,7 @@
         <div class="semester-title">📚 SEMESTER IV</div>
         <div class="today-alert" id="alert-sem4">
             <div class="icon" id="icon-sem4">📖</div>
-            <div class="info"><b>Ujian Hari Ini:</b> <span id="text-sem4">Tidak ada jadwal.</span></div>
+            <div class="info"><b>Status Ujian:</b> <span id="text-sem4">Memuat jadwal...</span></div>
         </div>
         <div class="table-wrapper">
             <table>
@@ -111,7 +111,7 @@
         <div class="semester-title">📚 SEMESTER VI</div>
         <div class="today-alert" id="alert-sem6">
             <div class="icon" id="icon-sem6">📖</div>
-            <div class="info"><b>Ujian Hari Ini:</b> <span id="text-sem6">Tidak ada jadwal.</span></div>
+            <div class="info"><b>Status Ujian:</b> <span id="text-sem6">Memuat jadwal...</span></div>
         </div>
         <div class="table-wrapper">
             <table>
@@ -129,7 +129,7 @@
         <span class="quote-text">"Hasil tidak akan mengkhianati usaha. Selamat berjuang di UTS, kerjakan dengan jujur dan berikan yang terbaik. GOOD LUCK🥰"</span>
         <span class="water-reminder">💧 Jangan Lupa Minum Air Putih</span>
         <div class="health-text">
-            Ingat, kesehatan adalah hak asasi yang paling mendasar bagi tubuhmu. Tanpa tubuh yang fit, logika hukum sekuat apa pun tidak akan maksimal. Jaga kesehatan karena kesehatan adalah prioritas No. 1!
+            Ingat, kesehatan adalah hak asasi yang paling mendasar bagi tubuhmu. Tanpa tubuh yang fit, logika hukum sekuat apa pun tidak akan maksimal. Jaga kesehatan karena kesehatan adalah prioritas No. 1! Tolong Jaga Kesehatan Anda
         </div>
     </div>
 
@@ -145,7 +145,6 @@
 <script>
     const jadwalData = {
         sem2: [
-            { tgl: "Senin, 20 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata", end: "12:00" },
             { tgl: "Senin, 27 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata", end: "12:00" },
             { tgl: "Selasa, 28 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Pidana", end: "16:10" },
             { tgl: "Rabu, 29 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Tata Negara", end: "10:00" },
@@ -184,6 +183,7 @@
         Object.keys(jadwalData).forEach(sem => {
             const tbody = document.getElementById(`body-${sem}`);
             const data = jadwalData[sem];
+            tbody.innerHTML = "";
             for (let i = 0; i < data.length; i++) {
                 let row = `<tr>`;
                 if (i > 0 && data[i].tgl === data[i-1].tgl) { } else {
@@ -209,19 +209,30 @@
         document.getElementById('current-date-time').innerText = `${dateStr} | ${timeStr} WIB`;
 
         Object.keys(jadwalData).forEach(sem => {
-            const matching = jadwalData[sem].filter(item => item.tgl.includes(dateStr));
+            const allData = jadwalData[sem];
+            const matching = allData.filter(item => item.tgl.includes(dateStr));
             const alertElem = document.getElementById(`text-${sem}`);
             const alertBox = document.getElementById(`alert-${sem}`);
             const iconElem = document.getElementById(`icon-${sem}`);
             
             if (matching.length > 0) {
-                // Cek apakah semua ujian hari ini sudah lewat jam selesainya
                 const allFinished = matching.every(m => timeStr > m.end);
 
                 if (allFinished) {
-                    alertElem.innerHTML = "<span style='color: #059669;'>Ujian hari ini telah usai. Istirahat sejenak dan bersiap untuk esok hari! ✨</span>";
-                    alertBox.style.background = "#f0fdf4";
-                    alertBox.style.borderColor = "#bbf7d0";
+                    let nextJadwal = "";
+                    for(let i = 0; i < allData.length; i++) {
+                        if (new Date(allData[i].tgl.split(',')[1]) > new Date(dateStr.split(',')[1])) {
+                             nextJadwal = allData[i].matkul;
+                             break;
+                        }
+                    }
+
+                    let matkulSelesai = matching.map(m => m.matkul).join(" & ");
+                    let pesanNext = nextJadwal ? `Ujian Selanjutnya: <b>${nextJadwal}</b>. Persiapkan diri Anda! 🔥` : "<b>Tolong Jaga Kesehatan Anda</b>";
+                    
+                    alertElem.innerHTML = `Ujian <b>${matkulSelesai}</b> Telah Usai, Segera Istirahat Dan Ujian Untuk Hari Selanjutnya. <br><span style="color:#065f46; font-size:12px;">${pesanNext}</span>`;
+                    alertBox.style.background = "#ecfdf5";
+                    alertBox.style.borderColor = "#10b981";
                     iconElem.innerText = "✅";
                 } else {
                     alertElem.innerHTML = matching.map(m => {
