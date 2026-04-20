@@ -25,15 +25,14 @@
             color: white; 
             padding: 15px; 
             border-radius: 12px; 
-            font-size: 12px; 
+            font-size: 11px; 
             font-weight: 800; 
             margin: 25px auto; 
             text-align: center; 
             box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
-        /* TIPS BOOKMARK DESAIN MENARIK */
+        /* TIPS BOOKMARK */
         .bookmark-card {
             background: #eff6ff;
             border-left: 6px solid #3b82f6;
@@ -42,18 +41,10 @@
             margin: 25px 0;
             box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
         }
-        .bookmark-card h3 { 
-            margin: 0 0 10px 0; 
-            color: #1d4ed8; 
-            font-size: 15px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-        }
+        .bookmark-card h3 { margin: 0 0 10px 0; color: #1d4ed8; font-size: 15px; display: flex; align-items: center; gap: 8px; }
         .bookmark-card ul { margin: 0; padding-left: 20px; font-size: 12px; color: #1e40af; font-weight: 600; }
-        .bookmark-card li { margin-bottom: 5px; }
 
-        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 12px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 12px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; transition: 0.3s; }
         .today-alert .icon { font-size: 20px; }
         .today-alert .info b { color: #92400e; display: block; font-size: 11px; text-transform: uppercase; }
         .today-alert .info span { font-size: 13px; font-weight: 700; color: #1e293b; }
@@ -72,18 +63,30 @@
 
         .scroll-hint { font-size: 9px; color: #94a3b8; text-align: right; margin-bottom: 5px; font-style: italic; }
         
-        /* MOTIVASI DENGAN WARNA MENARIK */
+        /* FOOTER MOTIVASI & KESEHATAN */
         .motivation-box { 
             text-align: center; 
             margin-top: 40px; 
             padding: 25px; 
             border-radius: 20px;
-            background: #f1f5f9;
+            background: #ffffff;
             border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .dedication-text { color: #64748b; font-size: 13px; margin-bottom: 15px; line-height: 1.6; }
-        .quote-text { font-weight: 800; color: #1e3a8a; font-size: 14px; display: block; margin-top: 10px; }
-        .water-reminder { color: #0ea5e9; font-weight: 700; font-size: 12px; margin-top: 5px; display: block; }
+        .dedication-text { color: #64748b; font-size: 12px; margin-bottom: 15px; }
+        .quote-text { font-weight: 800; color: #1e3a8a; font-size: 14px; display: block; margin-bottom: 15px; }
+        .water-reminder { color: #0ea5e9; font-weight: 700; font-size: 13px; display: block; margin-bottom: 5px; }
+        .health-text { 
+            color: #059669; 
+            font-size: 13px; 
+            font-weight: 700; 
+            background: #ecfdf5; 
+            padding: 10px; 
+            border-radius: 8px; 
+            border: 1px solid #a7f3d0;
+            display: inline-block;
+            margin-top: 5px;
+        }
 
         .ad-banner-bottom { background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; margin-top: 20px; padding: 15px; text-align: center; }
         .footer { padding-bottom: 80px; }
@@ -108,7 +111,7 @@
     <div class="bookmark-card">
         <h3>📌 Tips Agar Tidak Ketinggalan</h3>
         <ul>
-            <li><b>Android:</b> Klik titik tiga (⋮) di pojok kanan atas Chrome, pilih <b>"Tambahkan ke Layar Utama"</b>.</li>
+            <li><b>Android:</b> Klik titik tiga (⋮) di pojok Chrome, pilih <b>"Tambahkan ke Layar Utama"</b>.</li>
             <li><b>iPhone:</b> Klik ikon bagi (panah atas) di Safari, pilih <b>"Tambah ke Layar Utama"</b>.</li>
         </ul>
     </div>
@@ -161,10 +164,13 @@
     <div class="motivation-box">
         <div class="dedication-text">
             Web ini didedikasikan untuk teman-teman FH UHN agar tidak ada lagi cerita ketinggalan ujian karena salah lihat jadwal. 
-            Belajar dari pengalaman rekan kita, semoga portal ini membantu kita lulus tepat waktu.
+            Terimakasih🙏.
         </div>
         <span class="quote-text">"Hasil tidak akan mengkhianati usaha. Selamat berjuang di UTS, kerjakan dengan jujur dan berikan yang terbaik. GOOD LUCK🥰"</span>
         <span class="water-reminder">💧 Jangan Lupa Minum Air Putih</span>
+        <div class="health-text">
+            Ingat, kesehatan adalah hak asasi yang paling mendasar bagi tubuhmu. Tanpa tubuh yang fit, logika hukum sekuat apa pun tidak akan maksimal. Jaga kesehatan karena kesehatan adalah prioritas No. 1!
+        </div>
     </div>
 
     <div class="ad-banner-bottom">
