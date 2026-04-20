@@ -114,6 +114,24 @@
         </div>
     </div>
 
+    <div class="semester-section">
+        <div class="semester-title">📚 SEMESTER VI</div>
+        <div class="today-alert" id="alert-sem6">
+            <div class="icon" id="icon-sem6">📖</div>
+            <div class="info">
+                <b class="label">STATUS UJIAN:</b>
+                <span id="text-sem6" class="status-text">Memuat jadwal...</span>
+                <span id="next-sem6" class="next-exam"></span>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th style="width: 140px;">Hari, Tanggal</th><th style="width: 100px;">Jam</th><th>Mata Kuliah</th></tr></thead>
+                <tbody id="body-sem6"></tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="motivation-box">
         <div class="dedication-text">
             Web ini didedikasikan untuk teman-teman FH UHN agar tidak ada lagi cerita ketinggalan ujian karena salah lihat jadwal. 
@@ -128,17 +146,39 @@
 </div>
 
 <script>
-    // DATA JADWAL (Sesuai Screenshot Terbaru)
     const jadwalData = {
         sem2: [
-            { tgl: "Senin, 20 April 2026", jam: "14.20 – 16.00", matkul: "Hukum taurat", end: "16:00" },
-            { tgl: "Selasa, 21 April 2026", jam: "10.20 – 12.00", matkul: "Hukum rimba", end: "12:00" },
             { tgl: "Senin, 27 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata", end: "12:00" },
-            { tgl: "Selasa, 28 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Pidana", end: "16:10" }
+            { tgl: "Selasa, 28 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Pidana", end: "16:10" },
+            { tgl: "Rabu, 29 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Tata Negara", end: "10:00" },
+            { tgl: "Kamis, 30 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Administrasi Negara", end: "12:00" },
+            { tgl: "Senin, 4 Mei 2026", jam: "08.20 – 10.00", matkul: "Pengantar Tata Hukum Indonesia", end: "10:00" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "08.20 – 10.00", matkul: "Etika", end: "10:00" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "10.20 – 12.00", matkul: "Pendidikan Kewarganegaraan", end: "12:00" }
         ],
         sem4: [
-            { tgl: "Senin, 20 April 2026", jam: "14.20 – 16.00", matkul: "Hukum Perdata", end: "16:00" },
-            { tgl: "Selasa, 21 April 2026", jam: "10.20 – 12.00", matkul: "Kriminologi", end: "12:00" }
+            { tgl: "Senin, 27 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Waris Islam", end: "16:10" },
+            { tgl: "Selasa, 28 April 2026", jam: "10.20 – 12.00", matkul: "Kriminologi dan Viktimologi", end: "12:00" },
+            { tgl: "Rabu, 29 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Cyber", end: "12:00" },
+            { tgl: "Kamis, 30 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Konservasi", end: "10:00" },
+            { tgl: "Sabtu, 2 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Ketenagakerjaan dan PHI", end: "10:00" },
+            { tgl: "Senin, 4 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Perdata Internasional", end: "16:10" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "10.20 – 12.00", matkul: "Hukum Kepailitan dan Peradilan Niaga", end: "12:00" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Lembaga Pembiayaan", end: "10:00" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Perusahaan", end: "16:10" },
+            { tgl: "Kamis, 7 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Perdamaian Penyelesaian Sengketa", end: "10:00" },
+            { tgl: "Kamis, 7 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Internasional", end: "16:10" }
+        ],
+        sem6: [
+            { tgl: "Senin, 27 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Pidana", end: "10:00" },
+            { tgl: "Selasa, 28 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Perdata", end: "10:00" },
+            { tgl: "Rabu, 29 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Acara Peradilan Tata Usaha Negara", end: "16:10" },
+            { tgl: "Kamis, 30 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Perjanjian / Kontrak", end: "16:10" },
+            { tgl: "Sabtu, 2 Mei 2026", jam: "10.20 – 12.00", matkul: "Legal Opinion dan Audit Hukum", end: "12:00" },
+            { tgl: "Senin, 4 Mei 2026", jam: "10.20 – 12.00", matkul: "Hukum Pidana Militer & Peradilan Militer", end: "12:00" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "14.30 – 16.10", matkul: "Filsafat Hukum", end: "16:10" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "16.20 – 18.00", matkul: "Hukum Acara Mahkamah Konstitusi", end: "18:00" },
+            { tgl: "Kamis, 7 Mei 2026", jam: "10.20 – 12.00", matkul: "Kepemimpinan dan Kewirausahaan", end: "12:00" }
         ]
     };
 
@@ -180,16 +220,13 @@
             const iconElem = document.getElementById(`icon-${sem}`);
             
             if (matching.length > 0) {
-                // Cek apakah ujian terakhir hari ini sudah lewat
                 const allFinished = matching.every(m => timeStr > m.end);
 
                 if (allFinished) {
-                    // FORMAT JIKA SUDAH SELESAI
                     let matkulNames = matching.map(m => m.matkul).join(" & ");
-                    
-                    // Cari matkul selanjutnya
                     let nextItem = null;
                     const todayObj = new Date(wibTime.getFullYear(), wibTime.getMonth(), wibTime.getDate());
+                    
                     for(let i = 0; i < allData.length; i++) {
                         const dParts = allData[i].tgl.split(', ')[1].split(' ');
                         const months = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
@@ -197,7 +234,7 @@
                         if (itemDate > todayObj) { nextItem = allData[i]; break; }
                     }
 
-                    textElem.innerHTML = `Status Ujian: <b style="color:#92400e">${matkulNames}</b> Telah Usai, Segera Istirahat Dan Ujian Untuk Hari Selanjutnya.`;
+                    textElem.innerHTML = `Ujian <b>${matkulNames}</b> Telah Usai, Segera Istirahat Dan Ujian Untuk Hari Selanjutnya.`;
                     if (nextItem) {
                         nextElem.innerHTML = `Ujian Selanjutnya: <b>${nextItem.matkul}</b> Persiapkan diri Anda! 🔥`;
                     } else {
@@ -208,9 +245,8 @@
                     alertBox.style.borderColor = "#10b981";
                     iconElem.innerText = "✅";
                 } else {
-                    // FORMAT JIKA BELUM SELESAI (Sesuai Semester 4 di gambar)
                     let currentNames = matching.map(m => `<b style="color:#1e3a8a; font-size:14px;">${m.matkul}</b><br>(${m.jam})`).join("<br>");
-                    textElem.innerHTML = `Status Ujian:<br>${currentNames}`;
+                    textElem.innerHTML = currentNames;
                     nextElem.innerHTML = "";
                     alertBox.style.background = "#fffbeb";
                     alertBox.style.borderColor = "#fef3c7";
@@ -220,6 +256,7 @@
                 textElem.innerText = "Tidak ada jadwal ujian hari ini.";
                 nextElem.innerText = "";
                 alertBox.style.background = "#f8fafc";
+                alertBox.style.borderColor = "#cbd5e1";
                 iconElem.innerText = "📖";
             }
         });
