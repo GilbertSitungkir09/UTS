@@ -207,9 +207,19 @@
 
         const optionsDate = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
         const dateStr = wibTime.toLocaleDateString('id-ID', optionsDate);
-        const timeStr = wibTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
+        
+        // MENAMBAHKAN DETIK PADA FORMAT JAM
+        const timeStr = wibTime.toLocaleTimeString('id-ID', { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit', 
+            hour12: false 
+        });
         
         document.getElementById('current-date-time').innerText = `${dateStr} | ${timeStr} WIB`;
+
+        // Format pembanding waktu tanpa detik untuk logika status ujian (HH:mm)
+        const compareTimeStr = wibTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
 
         Object.keys(jadwalData).forEach(sem => {
             const allData = jadwalData[sem];
@@ -220,7 +230,7 @@
             const iconElem = document.getElementById(`icon-${sem}`);
             
             if (matching.length > 0) {
-                const allFinished = matching.every(m => timeStr > m.end);
+                const allFinished = matching.every(m => compareTimeStr > m.end);
 
                 if (allFinished) {
                     let matkulNames = matching.map(m => m.matkul).join(" & ");
