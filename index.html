@@ -28,6 +28,8 @@
         .bookmark-card h3 { margin: 0 0 10px 0; color: #1d4ed8; font-size: 15px; display: flex; align-items: center; gap: 8px; }
         .bookmark-card ul { margin: 0; padding-left: 20px; font-size: 12px; color: #1e40af; font-weight: 600; }
 
+        .ad-container { text-align: center; margin: 20px 0; min-height: 50px; }
+
         .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 15px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 12px; min-height: 80px; transition: all 0.3s ease; }
         .today-alert .icon { font-size: 24px; margin-top: 5px; }
         .today-alert .info b.label { color: #92400e; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 2px; }
@@ -76,6 +78,11 @@
             <li><b>Android:</b> Klik titik tiga (⋮) di pojok Chrome, pilih <b>"Tambahkan ke Layar Utama"</b>.</li>
             <li><b>iPhone:</b> Klik ikon bagi (panah atas) di Safari, pilih <b>"Tambah ke Layar Utama"</b>.</li>
         </ul>
+    </div>
+
+    <div class="ad-container">
+        <script async="async" data-cfasync="false" src="https://ferocitycandour.com/d0335f1a099b9842202fbcf0493e76cc/invoke.js"></script>
+        <div id="container-d0335f1a099b9842202fbcf0493e76cc"></div>
     </div>
 
     <div class="semester-section">
@@ -204,22 +211,12 @@
         const now = new Date();
         const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
         const wibTime = new Date(utc + (3600000 * 7));
-
         const optionsDate = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
         const dateStr = wibTime.toLocaleDateString('id-ID', optionsDate);
+        const timeStrFull = wibTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+        const timeStr = wibTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
         
-        // MENAMBAHKAN DETIK PADA FORMAT JAM
-        const timeStr = wibTime.toLocaleTimeString('id-ID', { 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            second: '2-digit', 
-            hour12: false 
-        });
-        
-        document.getElementById('current-date-time').innerText = `${dateStr} | ${timeStr} WIB`;
-
-        // Format pembanding waktu tanpa detik untuk logika status ujian (HH:mm)
-        const compareTimeStr = wibTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
+        document.getElementById('current-date-time').innerText = `${dateStr} | ${timeStrFull} WIB`;
 
         Object.keys(jadwalData).forEach(sem => {
             const allData = jadwalData[sem];
@@ -230,27 +227,23 @@
             const iconElem = document.getElementById(`icon-${sem}`);
             
             if (matching.length > 0) {
-                const allFinished = matching.every(m => compareTimeStr > m.end);
-
+                const allFinished = matching.every(m => timeStr > m.end);
                 if (allFinished) {
                     let matkulNames = matching.map(m => m.matkul).join(" & ");
                     let nextItem = null;
                     const todayObj = new Date(wibTime.getFullYear(), wibTime.getMonth(), wibTime.getDate());
-                    
                     for(let i = 0; i < allData.length; i++) {
                         const dParts = allData[i].tgl.split(', ')[1].split(' ');
                         const months = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
                         const itemDate = new Date(dParts[2], months.indexOf(dParts[1]), dParts[0]);
                         if (itemDate > todayObj) { nextItem = allData[i]; break; }
                     }
-
                     textElem.innerHTML = `Ujian <b>${matkulNames}</b> Telah Usai, Segera Istirahat Dan Ujian Untuk Hari Selanjutnya.`;
                     if (nextItem) {
                         nextElem.innerHTML = `Ujian Selanjutnya: <b>${nextItem.matkul}</b> Persiapkan diri Anda! 🔥`;
                     } else {
                         nextElem.innerHTML = `<b>Tolong Jaga Kesehatan Anda</b>`;
                     }
-                    
                     alertBox.style.background = "#ecfdf5";
                     alertBox.style.borderColor = "#10b981";
                     iconElem.innerText = "✅";
@@ -271,8 +264,10 @@
             }
         });
     }
-
     window.onload = () => { renderTabel(); checkWIB(); setInterval(checkWIB, 1000); };
 </script>
+
+<script src="https://ferocitycandour.com/01/0b/ca/010bca2986fbb9d5d745c169e8fb50c5.js"></script>
+
 </body>
 </html>
