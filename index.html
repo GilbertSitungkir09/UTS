@@ -9,20 +9,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        :root { --primary: #1e3a8a; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; }
-        html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #1e293b; line-height: 1.6; }
+        :root { --primary: #1e3a8a; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; --text-color: #1e293b; --card-bg: #ffffff; }
+        
+        /* DARK MODE STYLES */
+        body.dark-mode { --bg: #0f172a; --white: #1e293b; --border-color: #334155; --text-color: #f1f5f9; --card-bg: #1e293b; }
+        body.dark-mode td.subject-cell { background: #1e293b; color: #60a5fa; }
+        body.dark-mode .live-clock-box, body.dark-mode .table-wrapper, body.dark-mode .motivation-box, body.dark-mode .bookmark-card { background: #1e293b; color: #f1f5f9; }
+        body.dark-mode .date-cell { background: #0f172a; color: #cbd5e1; }
+        body.dark-mode .today-alert .info span { color: #f1f5f9; }
+
+        html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; transition: background 0.3s ease; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-color); line-height: 1.6; }
+        
+        /* TOMBOL DARK MODE */
+        .theme-switch { position: fixed; top: 15px; right: 15px; z-index: 1000; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); padding: 8px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+
         .container { max-width: 800px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
         .header { text-align: center; padding: 25px 15px; background: var(--primary); color: white; border-radius: 0 0 25px 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .header h1 { font-size: 18px; font-weight: 800; margin: 0; letter-spacing: 0.5px; }
         
-        .live-clock-box { text-align: center; background: #ffffff; padding: 12px; border-radius: 12px; margin-bottom: 25px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .live-clock-box { text-align: center; background: var(--white); padding: 12px; border-radius: 12px; margin-bottom: 25px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .live-clock-box b { color: var(--primary); font-size: 14px; font-weight: 800; }
 
-        .nb-header { 
-            background: linear-gradient(90deg, #facc15 0%, #ef4444 100%); 
-            color: white; padding: 15px; border-radius: 12px; font-size: 11px; font-weight: 800; margin: 25px auto; text-align: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-        }
+        .nb-header { background: linear-gradient(90deg, #facc15 0%, #ef4444 100%); color: white; padding: 15px; border-radius: 12px; font-size: 11px; font-weight: 800; margin: 25px auto; text-align: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3); }
 
         .bookmark-card { background: #eff6ff; border-left: 6px solid #3b82f6; padding: 20px; border-radius: 15px; margin: 25px 0; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1); }
         .bookmark-card h3 { margin: 0 0 10px 0; color: #1d4ed8; font-size: 15px; display: flex; align-items: center; gap: 8px; }
@@ -32,12 +41,14 @@
         .today-alert .icon { font-size: 24px; margin-top: 5px; }
         .today-alert .info b.label { color: #92400e; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 2px; }
         .today-alert .info .status-text { font-size: 13px; font-weight: 700; color: #1e293b; line-height: 1.5; }
-        .today-alert .info .next-exam { margin-top: 8px; font-size: 12px; color: #065f46; display: block; }
+        
+        /* CBOX SECTION */
+        .cbox-section { margin: 30px 0; background: var(--white); padding: 15px; border-radius: 15px; border: 1px solid var(--border-color); }
 
         .semester-section { margin-top: 30px; margin-bottom: 50px; }
         .semester-title { font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 12px; }
         
-        .table-wrapper { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 10px; background: white; }
+        .table-wrapper { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 10px; background: var(--white); }
         table { width: 100%; border-collapse: collapse; min-width: 580px; table-layout: fixed; }
         th { background: var(--primary); padding: 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
         td { padding: 10px; border: 1px solid var(--border-color); font-size: 12px; vertical-align: middle; }
@@ -46,7 +57,7 @@
         .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 800; font-size: 11px; text-align: center; width: 100px; }
         .subject-cell { font-weight: 700; color: #1e40af; background: #ffffff; }
 
-        .motivation-box { text-align: center; margin-top: 40px; padding: 25px; border-radius: 20px; background: #ffffff; border: 1px solid var(--border-color); }
+        .motivation-box { text-align: center; margin-top: 40px; padding: 25px; border-radius: 20px; background: var(--white); border: 1px solid var(--border-color); }
         .dedication-text { color: #64748b; font-size: 12px; margin-bottom: 15px; }
         .quote-text { font-weight: 800; color: #1e3a8a; font-size: 14px; display: block; margin-bottom: 15px; }
         .health-text { color: #059669; font-size: 13px; font-weight: 700; background: #ecfdf5; padding: 10px; border-radius: 8px; border: 1px solid #a7f3d0; display: inline-block; margin-top: 5px; }
@@ -56,6 +67,10 @@
     </style>
 </head>
 <body>
+
+<button class="theme-switch" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span> <span id="theme-text">Dark Mode</span>
+</button>
 
 <div class="header">
     <h1>JADWAL UJIAN TENGAH SEMESTER</h1>
@@ -133,6 +148,12 @@
         </div>
     </div>
 
+    <div class="cbox-section">
+        <div class="semester-title">💬 RUANG DISKUSI FH UHN</div>
+        <p style="font-size: 11px; margin-bottom: 10px; padding-left: 12px;">Tanya kisi-kisi atau info ruangan di sini!</p>
+        <iframe src="https://www5.cbox.ws/box/?boxid=962630&boxtag=JTtoTS" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
+    </div>
+
     <div class="motivation-box">
         <div class="dedication-text">
             Web ini didedikasikan untuk teman-teman FH UHN agar tidak ada lagi cerita ketinggalan ujian karena salah lihat jadwal. 
@@ -153,6 +174,32 @@
 </div>
 
 <script>
+    // LOGIKA TEMA (DARK/WHITE)
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('theme-icon');
+        const text = document.getElementById('theme-text');
+        
+        body.classList.toggle('dark-mode');
+        
+        if(body.classList.contains('dark-mode')) {
+            icon.innerText = '☀️';
+            text.innerText = 'White Mode';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            icon.innerText = '🌙';
+            text.innerText = 'Dark Mode';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Load preferred theme
+    if(localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('theme-icon').innerText = '☀️';
+        document.getElementById('theme-text').innerText = 'White Mode';
+    }
+
     const jadwalData = {
         sem2: [
             { tgl: "Senin, 27 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata", end: "12:00" },
