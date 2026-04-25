@@ -307,19 +307,25 @@
 
                     let activeUjian = matching.find(m => timeStr <= m.end);
                     if (activeUjian) {
-                        let targetTime = new Date(wibTime);
                         let isOngoing = timeStr >= activeUjian.start;
-                        let [h, m] = (isOngoing ? activeUjian.end : activeUjian.start).split(':');
-                        targetTime.setHours(h, m, 0);
                         
-                        let diff = targetTime - wibTime;
-                        let diffH = Math.floor(diff / 3600000);
-                        let diffM = Math.floor((diff % 3600000) / 60000);
-                        let diffS = Math.floor((diff % 60000) / 1000);
+                        if (isOngoing) {
+                            // JIKA SEDANG BERLANGSUNG
+                            cdElem.innerText = "Ujian Sedang Berlangsung GOOD LUCK📝📚🙆🏻‍♀️";
+                        } else {
+                            // JIKA BELUM MULAI (COUNTDOWN)
+                            let targetTime = new Date(wibTime);
+                            let [h, m] = activeUjian.start.split(':');
+                            targetTime.setHours(h, m, 0);
+                            
+                            let diff = targetTime - wibTime;
+                            let diffH = Math.floor(diff / 3600000);
+                            let diffM = Math.floor((diff % 3600000) / 60000);
+                            let diffS = Math.floor((diff % 60000) / 1000);
 
-                        let timeLabel = isOngoing ? "Sisa waktu ujian: " : "Ujian dimulai dalam: ";
-                        let timeString = (diffH > 0 ? diffH + "j " : "") + diffM + "m " + diffS + "d";
-                        cdElem.innerText = timeLabel + timeString;
+                            let timeString = (diffH > 0 ? diffH + "j " : "") + diffM + "m " + diffS + "d";
+                            cdElem.innerText = "Ujian dimulai dalam: " + timeString;
+                        }
                     }
                 }
             } else {
