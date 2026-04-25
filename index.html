@@ -15,19 +15,16 @@
             --white: #ffffff; 
             --border-color: #cbd5e1; 
             --text-color: #1e293b; 
-            --card-bg: #ffffff;
             --alert-text: #1e293b;
             --sub-text: #64748b;
         }
         
-        /* DARK MODE LOGIC - PERBAIKAN TOTAL */
         body.dark-mode { 
             --bg: #0f172a; 
             --white: #1e293b; 
             --border-color: #334155; 
             --text-color: #f1f5f9; 
-            --card-bg: #1e293b; 
-            --alert-text: #f1f5f9; /* Agar teks status ujian terang */
+            --alert-text: #f1f5f9; 
             --sub-text: #94a3b8;
         }
 
@@ -54,6 +51,8 @@
         .today-alert .icon { font-size: 24px; margin-top: 5px; }
         .today-alert .info b.label { color: #f59e0b; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 2px; }
         .today-alert .info .status-text { font-size: 13px; font-weight: 700; color: var(--alert-text); line-height: 1.5; }
+        .countdown-text { display: block; margin-top: 5px; font-size: 11px; font-weight: 800; color: #ef4444; }
+        body.dark-mode .countdown-text { color: #fb7185; }
         
         .cbox-section { margin: 30px 0; background: var(--white); padding: 15px; border-radius: 15px; border: 1px solid var(--border-color); }
 
@@ -116,6 +115,7 @@
                 <b class="label">STATUS UJIAN:</b>
                 <span id="text-sem2" class="status-text">Memuat jadwal...</span>
                 <span id="next-sem2" class="next-exam" style="display:block; margin-top:5px; font-size:12px;"></span>
+                <span id="cd-sem2" class="countdown-text"></span>
             </div>
         </div>
         <div class="table-wrapper">
@@ -134,6 +134,7 @@
                 <b class="label">STATUS UJIAN:</b>
                 <span id="text-sem4" class="status-text">Memuat jadwal...</span>
                 <span id="next-sem4" class="next-exam" style="display:block; margin-top:5px; font-size:12px;"></span>
+                <span id="cd-sem4" class="countdown-text"></span>
             </div>
         </div>
         <div class="table-wrapper">
@@ -152,6 +153,7 @@
                 <b class="label">STATUS UJIAN:</b>
                 <span id="text-sem6" class="status-text">Memuat jadwal...</span>
                 <span id="next-sem6" class="next-exam" style="display:block; margin-top:5px; font-size:12px;"></span>
+                <span id="cd-sem6" class="countdown-text"></span>
             </div>
         </div>
         <div class="table-wrapper">
@@ -207,37 +209,37 @@
 
     const jadwalData = {
         sem2: [
-            { tgl: "Senin, 27 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Perdata", end: "12:00" },
-            { tgl: "Selasa, 28 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Pidana", end: "16:10" },
-            { tgl: "Rabu, 29 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Tata Negara", end: "10:00" },
-            { tgl: "Kamis, 30 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Administrasi Negara", end: "12:00" },
-            { tgl: "Senin, 4 Mei 2026", jam: "08.20 – 10.00", matkul: "Pengantar Tata Hukum Indonesia", end: "10:00" },
-            { tgl: "Selasa, 5 Mei 2026", jam: "08.20 – 10.00", matkul: "Etika", end: "10:00" },
-            { tgl: "Rabu, 6 Mei 2026", jam: "10.20 – 12.00", matkul: "Pendidikan Kewarganegaraan", end: "12:00" }
+            { tgl: "Senin, 27 April 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Hukum Perdata" },
+            { tgl: "Selasa, 28 April 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Hukum Pidana" },
+            { tgl: "Rabu, 29 April 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Hukum Tata Negara" },
+            { tgl: "Kamis, 30 April 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Hukum Administrasi Negara" },
+            { tgl: "Senin, 4 Mei 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Pengantar Tata Hukum Indonesia" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Etika" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Pendidikan Kewarganegaraan" }
         ],
         sem4: [
-            { tgl: "Senin, 27 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Waris Islam", end: "16:10" },
-            { tgl: "Selasa, 28 April 2026", jam: "10.20 – 12.00", matkul: "Kriminologi dan Viktimologi", end: "12:00" },
-            { tgl: "Rabu, 29 April 2026", jam: "10.20 – 12.00", matkul: "Hukum Cyber", end: "12:00" },
-            { tgl: "Kamis, 30 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Konservasi", end: "10:00" },
-            { tgl: "Sabtu, 2 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Ketenagakerjaan dan PHI", end: "10:00" },
-            { tgl: "Senin, 4 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Perdata Internasional", end: "16:10" },
-            { tgl: "Selasa, 5 Mei 2026", jam: "10.20 – 12.00", matkul: "Hukum Kepailitan dan Peradilan Niaga", end: "12:00" },
-            { tgl: "Rabu, 6 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Lembaga Pembiayaan", end: "10:00" },
-            { tgl: "Rabu, 6 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Perusahaan", end: "16:10" },
-            { tgl: "Kamis, 7 Mei 2026", jam: "08.20 – 10.00", matkul: "Hukum Perdamaian Penyelesaian Sengketa", end: "10:00" },
-            { tgl: "Kamis, 7 Mei 2026", jam: "14.30 – 16.10", matkul: "Hukum Internasional", end: "16:10" }
+            { tgl: "Senin, 27 April 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Hukum Waris Islam" },
+            { tgl: "Selasa, 28 April 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Kriminologi dan Viktimologi" },
+            { tgl: "Rabu, 29 April 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Hukum Cyber" },
+            { tgl: "Kamis, 30 April 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Hukum Konservasi" },
+            { tgl: "Sabtu, 2 Mei 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Hukum Ketenagakerjaan dan PHI" },
+            { tgl: "Senin, 4 Mei 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Hukum Perdata Internasional" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Hukum Kepailitan dan Peradilan Niaga" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Hukum Lembaga Pembiayaan" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Hukum Perusahaan" },
+            { tgl: "Kamis, 7 Mei 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Hukum Perdamaian Penyelesaian Sengketa" },
+            { tgl: "Kamis, 7 Mei 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Hukum Internasional" }
         ],
         sem6: [
-            { tgl: "Senin, 27 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Pidana", end: "10:00" },
-            { tgl: "Selasa, 28 April 2026", jam: "08.20 – 10.00", matkul: "Hukum Acara Perdata", end: "10:00" },
-            { tgl: "Rabu, 29 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Acara Peradilan Tata Usaha Negara", end: "16:10" },
-            { tgl: "Kamis, 30 April 2026", jam: "14.30 – 16.10", matkul: "Hukum Perjanjian / Kontrak", end: "16:10" },
-            { tgl: "Sabtu, 2 Mei 2026", jam: "10.20 – 12.00", matkul: "Legal Opinion dan Audit Hukum", end: "12:00" },
-            { tgl: "Senin, 4 Mei 2026", jam: "10.20 – 12.00", matkul: "Hukum Pidana Militer & Peradilan Militer", end: "12:00" },
-            { tgl: "Selasa, 5 Mei 2026", jam: "14.30 – 16.10", matkul: "Filsafat Hukum", end: "16:10" },
-            { tgl: "Rabu, 6 Mei 2026", jam: "16.20 – 18.00", matkul: "Hukum Acara Mahkamah Konstitusi", end: "18:00" },
-            { tgl: "Kamis, 7 Mei 2026", jam: "10.20 – 12.00", matkul: "Kepemimpinan dan Kewirausahaan", end: "12:00" }
+            { tgl: "Senin, 27 April 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Hukum Acara Pidana" },
+            { tgl: "Selasa, 28 April 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Hukum Acara Perdata" },
+            { tgl: "Rabu, 29 April 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Hukum Acara Peradilan Tata Usaha Negara" },
+            { tgl: "Kamis, 30 April 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Hukum Perjanjian / Kontrak" },
+            { tgl: "Sabtu, 2 Mei 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Legal Opinion dan Audit Hukum" },
+            { tgl: "Senin, 4 Mei 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Hukum Pidana Militer & Peradilan Militer" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Filsafat Hukum" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "16.20 – 18.00", start: "16:20", end: "18:00", matkul: "Hukum Acara Mahkamah Konstitusi" },
+            { tgl: "Kamis, 7 Mei 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Kepemimpinan dan Kewirausahaan" }
         ]
     };
 
@@ -273,10 +275,12 @@
         Object.keys(jadwalData).forEach(sem => {
             const allData = jadwalData[sem];
             const matching = allData.filter(item => item.tgl.includes(dateStr));
-            const alertBox = document.getElementById(`alert-${sem}`);
             const textElem = document.getElementById(`text-${sem}`);
             const nextElem = document.getElementById(`next-${sem}`);
+            const cdElem = document.getElementById(`cd-${sem}`);
             
+            cdElem.innerText = ""; // Reset countdown
+
             if (matching.length > 0) {
                 const allFinished = matching.every(m => timeStr > m.end);
                 if (allFinished) {
@@ -299,6 +303,23 @@
                     let currentNames = matching.map(m => `<b>${m.matkul}</b> (${m.jam})`).join("<br>");
                     textElem.innerHTML = currentNames;
                     nextElem.innerHTML = "";
+
+                    // LOGIKA COUNTDOWN
+                    let activeUjian = matching.find(m => timeStr <= m.end);
+                    if (activeUjian) {
+                        let targetTime = new Date(wibTime);
+                        let isOngoing = timeStr >= activeUjian.start;
+                        let [h, m] = (isOngoing ? activeUjian.end : activeUjian.start).split(':');
+                        targetTime.setHours(h, m, 0);
+                        
+                        let diff = targetTime - wibTime;
+                        let diffH = Math.floor(diff / 3600000);
+                        let diffM = Math.floor((diff % 3600000) / 60000);
+                        let diffS = Math.floor((diff % 60000) / 1000);
+
+                        cdElem.innerText = (isOngoing ? "Sisa waktu ujian: " : "Ujian dimulai dalam: ") + 
+                                          `${diffH}j ${diffM}m ${diffS}d`;
+                    }
                 }
             } else {
                 textElem.innerText = "Tidak ada jadwal ujian hari ini.";
