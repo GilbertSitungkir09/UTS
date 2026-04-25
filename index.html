@@ -10,22 +10,13 @@
     
     <style>
         :root { 
-            --primary: #1e3a8a; 
-            --bg: #f8fafc; 
-            --white: #ffffff; 
-            --border-color: #cbd5e1; 
-            --text-color: #1e293b; 
-            --alert-text: #1e293b;
-            --sub-text: #64748b;
+            --primary: #1e3a8a; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; 
+            --text-color: #1e293b; --alert-text: #1e293b; --sub-text: #64748b;
         }
         
         body.dark-mode { 
-            --bg: #0f172a; 
-            --white: #1e293b; 
-            --border-color: #334155; 
-            --text-color: #f1f5f9; 
-            --alert-text: #f1f5f9; 
-            --sub-text: #94a3b8;
+            --bg: #0f172a; --white: #1e293b; --border-color: #334155; 
+            --text-color: #f1f5f9; --alert-text: #f1f5f9; --sub-text: #94a3b8;
         }
 
         html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; transition: background 0.3s ease, color 0.3s ease; }
@@ -42,11 +33,6 @@
 
         .nb-header { background: linear-gradient(90deg, #facc15 0%, #ef4444 100%); color: white; padding: 15px; border-radius: 12px; font-size: 11px; font-weight: 800; margin: 25px auto; text-align: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3); }
 
-        .bookmark-card { background: #eff6ff; border-left: 6px solid #3b82f6; padding: 20px; border-radius: 15px; margin: 25px 0; border: 1px solid var(--border-color); }
-        body.dark-mode .bookmark-card { background: #1e293b; }
-        .bookmark-card h3 { margin: 0 0 10px 0; color: #3b82f6; font-size: 15px; display: flex; align-items: center; gap: 8px; }
-        .bookmark-card ul { margin: 0; padding-left: 20px; font-size: 12px; color: var(--alert-text); font-weight: 600; }
-
         .today-alert { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 12px; min-height: 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .today-alert .icon { font-size: 24px; margin-top: 5px; }
         .today-alert .info b.label { color: #f59e0b; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 2px; }
@@ -55,10 +41,8 @@
         body.dark-mode .countdown-text { color: #fb7185; }
         
         .cbox-section { margin: 30px 0; background: var(--white); padding: 15px; border-radius: 15px; border: 1px solid var(--border-color); }
-
         .semester-section { margin-top: 30px; margin-bottom: 50px; }
         .semester-title { font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 12px; }
-        body.dark-mode .semester-title { color: #60a5fa; border-left-color: #60a5fa; }
         
         .table-wrapper { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 10px; background: var(--white); }
         table { width: 100%; border-collapse: collapse; min-width: 580px; table-layout: fixed; }
@@ -71,11 +55,8 @@
         body.dark-mode .subject-cell { color: #60a5fa; }
 
         .motivation-box { text-align: center; margin-top: 40px; padding: 25px; border-radius: 20px; background: var(--white); border: 1px solid var(--border-color); }
-        .dedication-text { color: var(--sub-text); font-size: 12px; margin-bottom: 15px; }
         .quote-text { font-weight: 800; color: #2563eb; font-size: 14px; display: block; margin-bottom: 15px; }
-        body.dark-mode .quote-text { color: #60a5fa; }
         .health-text { color: #10b981; font-size: 13px; font-weight: 700; background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; display: inline-block; margin-top: 5px; }
-
         .footer { padding-bottom: 80px; }
     </style>
 </head>
@@ -97,14 +78,6 @@
 
     <div class="nb-header">
         ⚠️ NB : HARAP TELITI KEMBALI DENGAN MATA KULIAH ATAS ATAUPUN BAWAH YANG ANDA AMBIL
-    </div>
-
-    <div class="bookmark-card">
-        <h3>📌 Tips Agar Tidak Ketinggalan</h3>
-        <ul>
-            <li><b>Android:</b> Klik titik tiga (⋮) di pojok Chrome, pilih <b>"Tambahkan ke Layar Utama"</b>.</li>
-            <li><b>iPhone:</b> Klik ikon bagi (panah atas) di Safari, pilih <b>"Tambah ke Layar Utama"</b>.</li>
-        </ul>
     </div>
 
     <div class="semester-section">
@@ -166,20 +139,12 @@
 
     <div class="cbox-section">
         <div class="semester-title">💬 RUANG DISKUSI FH UHN</div>
-        <p style="font-size: 11px; margin-bottom: 10px; padding-left: 12px; color: var(--sub-text);">Tanya kisi-kisi atau info ruangan di sini!</p>
         <iframe src="https://www5.cbox.ws/box/?boxid=962630&boxtag=JTtoTS" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
     </div>
 
     <div class="motivation-box">
-        <div class="dedication-text">
-            Web ini didedikasikan untuk teman-teman FH UHN agar tidak ada lagi cerita ketinggalan ujian karena salah lihat jadwal. 
-            Semoga portal ini membantu kita Semua.
-        </div>
         <span class="quote-text">"Hasil tidak akan mengkhianati usaha. Selamat berjuang di UTS, kerjakan dengan jujur dan berikan yang terbaik. GOOD LUCK🥰🥰🥰"</span>
-        <div class="health-text">
-            Ingat, kesehatan adalah hak asasi yang paling mendasar bagi tubuhmu. Jaga kesehatan karena kesehatan adalah prioritas No. 1! Tolong Jaga Kesehatan Anda
-        </div>
-
+        <div class="health-text">Tolong Jaga Kesehatan Anda</div>
         <div class="ad-container">
             <script async="async" data-cfasync="false" src="https://ferocitycandour.com/d0335f1a099b9842202fbcf0493e76cc/invoke.js"></script>
             <div id="container-d0335f1a099b9842202fbcf0493e76cc"></div>
@@ -209,7 +174,7 @@
 
     const jadwalData = {
         sem2: [
-            { tgl: "Sabtu, 25 April 2026", jam: "19.45 – 21.00", start: "19:45", end: "21:00", matkul: "Hukum" },
+            { tgl: "Sabtu, 25 April 2026", jam: "19.45 – 21.00", start: "19:45", end: "21:00", matkul: "Uji Coba Sistem" },
             { tgl: "Senin, 27 April 2026", jam: "10.20 – 12.00", start: "10:20", end: "12:00", matkul: "Hukum Perdata" },
             { tgl: "Selasa, 28 April 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Hukum Pidana" },
             { tgl: "Rabu, 29 April 2026", jam: "08.20 – 10.00", start: "08:20", end: "10:00", matkul: "Hukum Tata Negara" },
@@ -269,7 +234,6 @@
         const optionsDate = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
         const dateStr = wibTime.toLocaleDateString('id-ID', optionsDate);
         const timeStrFull = wibTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-        const timeStr = wibTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
         
         document.getElementById('current-date-time').innerText = `${dateStr} | ${timeStrFull} WIB`;
 
@@ -280,10 +244,19 @@
             const nextElem = document.getElementById(`next-${sem}`);
             const cdElem = document.getElementById(`cd-${sem}`);
             
-            cdElem.innerText = "";
+            cdElem.innerText = ""; 
 
             if (matching.length > 0) {
-                const allFinished = matching.every(m => timeStr > m.end);
+                // Perbaikan cara ambil jam menit untuk pembanding
+                const currentH = wibTime.getHours();
+                const currentM = wibTime.getMinutes();
+                const currentTimeVal = (currentH * 60) + currentM;
+
+                const allFinished = matching.every(m => {
+                    const [h, min] = m.end.split(':').map(Number);
+                    return currentTimeVal > (h * 60 + min);
+                });
+
                 if (allFinished) {
                     let matkulNames = matching.map(m => m.matkul).join(" & ");
                     let nextItem = null;
@@ -295,28 +268,26 @@
                         if (itemDate > todayObj) { nextItem = allData[i]; break; }
                     }
                     textElem.innerHTML = `Ujian <b>${matkulNames}</b> Telah Usai, Segera Istirahat Dan Ujian Untuk Hari Selanjutnya.`;
-                    if (nextItem) {
-                        nextElem.innerHTML = `Ujian Selanjutnya: <b style="color:#10b981;">${nextItem.matkul}</b>. Persiapkan diri Anda! 🔥`;
-                    } else {
-                        nextElem.innerHTML = `<b style="color:#10b981;">Tolong Jaga Kesehatan Anda</b>`;
-                    }
+                    nextElem.innerHTML = nextItem ? `Ujian Selanjutnya: <b style="color:#10b981;">${nextItem.matkul}</b>.` : `<b>Tolong Jaga Kesehatan Anda</b>`;
                 } else {
                     let currentNames = matching.map(m => `<b>${m.matkul}</b> (${m.jam})`).join("<br>");
                     textElem.innerHTML = currentNames;
                     nextElem.innerHTML = "";
 
-                    let activeUjian = matching.find(m => timeStr <= m.end);
+                    let activeUjian = matching.find(m => {
+                        const [eh, em] = m.end.split(':').map(Number);
+                        return currentTimeVal <= (eh * 60 + em);
+                    });
+
                     if (activeUjian) {
-                        let isOngoing = timeStr >= activeUjian.start;
-                        
-                        if (isOngoing) {
-                            // JIKA SEDANG BERLANGSUNG
+                        const [sh, sm] = activeUjian.start.split(':').map(Number);
+                        const startTimeVal = (sh * 60 + sm);
+
+                        if (currentTimeVal >= startTimeVal) {
                             cdElem.innerText = "Ujian Sedang Berlangsung GOOD LUCK📝📚🙆🏻‍♀️";
                         } else {
-                            // JIKA BELUM MULAI (COUNTDOWN)
                             let targetTime = new Date(wibTime);
-                            let [h, m] = activeUjian.start.split(':');
-                            targetTime.setHours(h, m, 0);
+                            targetTime.setHours(sh, sm, 0);
                             
                             let diff = targetTime - wibTime;
                             let diffH = Math.floor(diff / 3600000);
