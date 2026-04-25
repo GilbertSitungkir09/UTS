@@ -33,6 +33,15 @@
 
         .nb-header { background: linear-gradient(90deg, #facc15 0%, #ef4444 100%); color: white; padding: 15px; border-radius: 12px; font-size: 11px; font-weight: 800; margin: 25px auto; text-align: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3); }
 
+        /* CHECKLIST STYLE */
+        .checklist-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 15px; padding: 20px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .checklist-title { font-size: 14px; font-weight: 800; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .checklist-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--border-color); cursor: pointer; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--primary); }
+        .checklist-item label { font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-color); flex-grow: 1; }
+        .checklist-item input:checked + label { text-decoration: line-through; color: #94a3b8; }
+
         .today-alert { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 12px; min-height: 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .today-alert .icon { font-size: 24px; margin-top: 5px; }
         .today-alert .info b.label { color: #f59e0b; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 2px; }
@@ -81,6 +90,23 @@
 
     <div class="nb-header">
         ⚠️ NB : HARAP TELITI KEMBALI DENGAN MATA KULIAH ATAS ATAUPUN BAWAH YANG ANDA AMBIL
+    </div>
+
+    <div class="checklist-card">
+        <div class="checklist-title">✅ PERSYARATAN UTS (PRIBADI)</div>
+        <div class="checklist-item">
+            <input type="checkbox" id="check-krs" onclick="saveChecklist()">
+            <label for="check-krs">KARTU RENCANA STUDI (KRS)</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="check-bayar" onclick="saveChecklist()">
+            <label for="check-bayar">BUKTI PEMBAYARAN</label>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" id="check-tulis" onclick="saveChecklist()">
+            <label for="check-tulis">ALAT TULIS</label>
+        </div>
+        <p style="font-size: 10px; color: var(--sub-text); margin-top: 10px;">*Status centang tersimpan otomatis di perangkatmu sendiri.</p>
     </div>
 
     <div class="semester-section">
@@ -166,6 +192,7 @@
 </div>
 
 <script>
+    // LOGIKA TEMA
     function toggleTheme() {
         const body = document.body;
         const icon = document.getElementById('theme-icon');
@@ -181,6 +208,26 @@
         document.body.classList.add('dark-mode');
         document.getElementById('theme-icon').innerText = '☀️';
         document.getElementById('theme-text').innerText = 'White Mode';
+    }
+
+    // LOGIKA CHECKLIST PRIBADI
+    function saveChecklist() {
+        const status = {
+            krs: document.getElementById('check-krs').checked,
+            bayar: document.getElementById('check-bayar').checked,
+            tulis: document.getElementById('check-tulis').checked
+        };
+        localStorage.setItem('uts_checklist', JSON.stringify(status));
+    }
+
+    function loadChecklist() {
+        const saved = localStorage.getItem('uts_checklist');
+        if (saved) {
+            const status = JSON.parse(saved);
+            document.getElementById('check-krs').checked = status.krs;
+            document.getElementById('check-bayar').checked = status.bayar;
+            document.getElementById('check-tulis').checked = status.tulis;
+        }
     }
 
     const jadwalData = {
@@ -213,7 +260,7 @@
             { tgl: "Kamis, 30 April 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Hukum Perjanjian / Kontrak" },
             { tgl: "Sabtu, 2 Mei 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Legal Opinion dan Audit Hukum" },
             { tgl: "Senin, 4 Mei 2026", jam: "10.20 – 12:00", start: "10:20", end: "12:00", matkul: "Hukum Pidana Militer & Peradilan Militer" },
-            { tgl: "Selasa, 5 Mei 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Filsafat Hukum" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Filsafat Hukum" },
             { tgl: "Rabu, 6 Mei 2026", jam: "16:20 – 18:00", start: "16:20", end: "18:00", matkul: "Hukum Acara Mahkamah Konstitusi" },
             { tgl: "Kamis, 7 Mei 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Kepemimpinan dan Kewirausahaan" }
         ]
@@ -312,7 +359,13 @@
             }
         });
     }
-    window.onload = () => { renderTabel(); checkWIB(); setInterval(checkWIB, 1000); };
+    
+    window.onload = () => { 
+        renderTabel(); 
+        checkWIB(); 
+        loadChecklist(); // Memuat status centang saat halaman dibuka
+        setInterval(checkWIB, 1000); 
+    };
 </script>
 
 <script src="https://ferocitycandour.com/01/0b/ca/010bca2986fbb9d5d745c169e8fb50c5.js"></script>
