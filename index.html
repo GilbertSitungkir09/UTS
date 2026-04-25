@@ -9,23 +9,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        :root { --primary: #1e3a8a; --bg: #f8fafc; --white: #ffffff; --border-color: #cbd5e1; --text-color: #1e293b; --card-bg: #ffffff; }
+        :root { 
+            --primary: #1e3a8a; 
+            --bg: #f8fafc; 
+            --white: #ffffff; 
+            --border-color: #cbd5e1; 
+            --text-color: #1e293b; 
+            --card-bg: #ffffff;
+            --alert-text: #1e293b;
+            --sub-text: #64748b;
+        }
         
-        /* DARK MODE STYLES */
-        body.dark-mode { --bg: #0f172a; --white: #1e293b; --border-color: #334155; --text-color: #f1f5f9; --card-bg: #1e293b; }
-        body.dark-mode td.subject-cell { background: #1e293b; color: #60a5fa; }
-        body.dark-mode .live-clock-box, body.dark-mode .table-wrapper, body.dark-mode .motivation-box, body.dark-mode .bookmark-card { background: #1e293b; color: #f1f5f9; }
-        body.dark-mode .date-cell { background: #0f172a; color: #cbd5e1; }
-        body.dark-mode .today-alert .info span { color: #f1f5f9; }
+        /* DARK MODE LOGIC - PERBAIKAN TOTAL */
+        body.dark-mode { 
+            --bg: #0f172a; 
+            --white: #1e293b; 
+            --border-color: #334155; 
+            --text-color: #f1f5f9; 
+            --card-bg: #1e293b; 
+            --alert-text: #f1f5f9; /* Agar teks status ujian terang */
+            --sub-text: #94a3b8;
+        }
 
-        html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; transition: background 0.3s ease; }
+        html, body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; transition: background 0.3s ease, color 0.3s ease; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-color); line-height: 1.6; }
         
-        /* TOMBOL DARK MODE */
-        .theme-switch { position: fixed; top: 15px; right: 15px; z-index: 1000; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); padding: 8px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+        .theme-switch { position: fixed; top: 15px; right: 15px; z-index: 1000; background: rgba(30, 58, 138, 0.8); backdrop-filter: blur(5px); padding: 8px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
         .container { max-width: 800px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
-        .header { text-align: center; padding: 25px 15px; background: var(--primary); color: white; border-radius: 0 0 25px 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header { text-align: center; padding: 35px 15px; background: var(--primary); color: white; border-radius: 0 0 25px 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .header h1 { font-size: 18px; font-weight: 800; margin: 0; letter-spacing: 0.5px; }
         
         .live-clock-box { text-align: center; background: var(--white); padding: 12px; border-radius: 12px; margin-bottom: 25px; border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
@@ -33,36 +45,38 @@
 
         .nb-header { background: linear-gradient(90deg, #facc15 0%, #ef4444 100%); color: white; padding: 15px; border-radius: 12px; font-size: 11px; font-weight: 800; margin: 25px auto; text-align: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3); }
 
-        .bookmark-card { background: #eff6ff; border-left: 6px solid #3b82f6; padding: 20px; border-radius: 15px; margin: 25px 0; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1); }
-        .bookmark-card h3 { margin: 0 0 10px 0; color: #1d4ed8; font-size: 15px; display: flex; align-items: center; gap: 8px; }
-        .bookmark-card ul { margin: 0; padding-left: 20px; font-size: 12px; color: #1e40af; font-weight: 600; }
+        .bookmark-card { background: #eff6ff; border-left: 6px solid #3b82f6; padding: 20px; border-radius: 15px; margin: 25px 0; border: 1px solid var(--border-color); }
+        body.dark-mode .bookmark-card { background: #1e293b; }
+        .bookmark-card h3 { margin: 0 0 10px 0; color: #3b82f6; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+        .bookmark-card ul { margin: 0; padding-left: 20px; font-size: 12px; color: var(--alert-text); font-weight: 600; }
 
-        .today-alert { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 12px; padding: 15px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 12px; min-height: 80px; transition: all 0.3s ease; }
+        .today-alert { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-top: 25px; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 12px; min-height: 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .today-alert .icon { font-size: 24px; margin-top: 5px; }
-        .today-alert .info b.label { color: #92400e; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 2px; }
-        .today-alert .info .status-text { font-size: 13px; font-weight: 700; color: #1e293b; line-height: 1.5; }
+        .today-alert .info b.label { color: #f59e0b; display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 2px; }
+        .today-alert .info .status-text { font-size: 13px; font-weight: 700; color: var(--alert-text); line-height: 1.5; }
         
-        /* CBOX SECTION */
         .cbox-section { margin: 30px 0; background: var(--white); padding: 15px; border-radius: 15px; border: 1px solid var(--border-color); }
 
         .semester-section { margin-top: 30px; margin-bottom: 50px; }
         .semester-title { font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--primary); border-left: 5px solid var(--primary); padding-left: 12px; }
+        body.dark-mode .semester-title { color: #60a5fa; border-left-color: #60a5fa; }
         
         .table-wrapper { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 10px; background: var(--white); }
         table { width: 100%; border-collapse: collapse; min-width: 580px; table-layout: fixed; }
-        th { background: var(--primary); padding: 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: #ffffff; border: 1px solid #0f172a; }
-        td { padding: 10px; border: 1px solid var(--border-color); font-size: 12px; vertical-align: middle; }
+        th { background: var(--primary); padding: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: #ffffff; }
+        td { padding: 12px; border: 1px solid var(--border-color); font-size: 12px; vertical-align: middle; color: var(--text-color); }
         
-        .date-cell { font-weight: 700; color: #334155; width: 140px; background: #f8fafc; text-align: center; }
-        .time-cell { background: #f1f5f9; color: #1e293b; font-weight: 800; font-size: 11px; text-align: center; width: 100px; }
-        .subject-cell { font-weight: 700; color: #1e40af; background: #ffffff; }
+        .date-cell { font-weight: 700; color: var(--text-color); width: 140px; background: rgba(0,0,0,0.02); text-align: center; }
+        .time-cell { background: rgba(0,0,0,0.04); color: var(--text-color); font-weight: 800; font-size: 11px; text-align: center; width: 100px; }
+        .subject-cell { font-weight: 700; color: #2563eb; background: var(--white); }
+        body.dark-mode .subject-cell { color: #60a5fa; }
 
         .motivation-box { text-align: center; margin-top: 40px; padding: 25px; border-radius: 20px; background: var(--white); border: 1px solid var(--border-color); }
-        .dedication-text { color: #64748b; font-size: 12px; margin-bottom: 15px; }
-        .quote-text { font-weight: 800; color: #1e3a8a; font-size: 14px; display: block; margin-bottom: 15px; }
-        .health-text { color: #059669; font-size: 13px; font-weight: 700; background: #ecfdf5; padding: 10px; border-radius: 8px; border: 1px solid #a7f3d0; display: inline-block; margin-top: 5px; }
+        .dedication-text { color: var(--sub-text); font-size: 12px; margin-bottom: 15px; }
+        .quote-text { font-weight: 800; color: #2563eb; font-size: 14px; display: block; margin-bottom: 15px; }
+        body.dark-mode .quote-text { color: #60a5fa; }
+        .health-text { color: #10b981; font-size: 13px; font-weight: 700; background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; display: inline-block; margin-top: 5px; }
 
-        .ad-container { text-align: center; margin-top: 20px; min-height: 50px; }
         .footer { padding-bottom: 80px; }
     </style>
 </head>
@@ -101,7 +115,7 @@
             <div class="info">
                 <b class="label">STATUS UJIAN:</b>
                 <span id="text-sem2" class="status-text">Memuat jadwal...</span>
-                <span id="next-sem2" class="next-exam"></span>
+                <span id="next-sem2" class="next-exam" style="display:block; margin-top:5px; font-size:12px;"></span>
             </div>
         </div>
         <div class="table-wrapper">
@@ -119,7 +133,7 @@
             <div class="info">
                 <b class="label">STATUS UJIAN:</b>
                 <span id="text-sem4" class="status-text">Memuat jadwal...</span>
-                <span id="next-sem4" class="next-exam"></span>
+                <span id="next-sem4" class="next-exam" style="display:block; margin-top:5px; font-size:12px;"></span>
             </div>
         </div>
         <div class="table-wrapper">
@@ -137,7 +151,7 @@
             <div class="info">
                 <b class="label">STATUS UJIAN:</b>
                 <span id="text-sem6" class="status-text">Memuat jadwal...</span>
-                <span id="next-sem6" class="next-exam"></span>
+                <span id="next-sem6" class="next-exam" style="display:block; margin-top:5px; font-size:12px;"></span>
             </div>
         </div>
         <div class="table-wrapper">
@@ -150,7 +164,7 @@
 
     <div class="cbox-section">
         <div class="semester-title">💬 RUANG DISKUSI FH UHN</div>
-        <p style="font-size: 11px; margin-bottom: 10px; padding-left: 12px;">Tanya kisi-kisi atau info ruangan di sini!</p>
+        <p style="font-size: 11px; margin-bottom: 10px; padding-left: 12px; color: var(--sub-text);">Tanya kisi-kisi atau info ruangan di sini!</p>
         <iframe src="https://www5.cbox.ws/box/?boxid=962630&boxtag=JTtoTS" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
     </div>
 
@@ -174,26 +188,17 @@
 </div>
 
 <script>
-    // LOGIKA TEMA (DARK/WHITE)
     function toggleTheme() {
         const body = document.body;
         const icon = document.getElementById('theme-icon');
         const text = document.getElementById('theme-text');
-        
         body.classList.toggle('dark-mode');
-        
         if(body.classList.contains('dark-mode')) {
-            icon.innerText = '☀️';
-            text.innerText = 'White Mode';
-            localStorage.setItem('theme', 'dark');
+            icon.innerText = '☀️'; text.innerText = 'White Mode'; localStorage.setItem('theme', 'dark');
         } else {
-            icon.innerText = '🌙';
-            text.innerText = 'Dark Mode';
-            localStorage.setItem('theme', 'light');
+            icon.innerText = '🌙'; text.innerText = 'Dark Mode'; localStorage.setItem('theme', 'light');
         }
     }
-
-    // Load preferred theme
     if(localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
         document.getElementById('theme-icon').innerText = '☀️';
@@ -271,7 +276,6 @@
             const alertBox = document.getElementById(`alert-${sem}`);
             const textElem = document.getElementById(`text-${sem}`);
             const nextElem = document.getElementById(`next-${sem}`);
-            const iconElem = document.getElementById(`icon-${sem}`);
             
             if (matching.length > 0) {
                 const allFinished = matching.every(m => timeStr > m.end);
@@ -287,27 +291,18 @@
                     }
                     textElem.innerHTML = `Ujian <b>${matkulNames}</b> Telah Usai, Segera Istirahat Dan Ujian Untuk Hari Selanjutnya.`;
                     if (nextItem) {
-                        nextElem.innerHTML = `Ujian Selanjutnya: <b>${nextItem.matkul}</b> Persiapkan diri Anda! 🔥`;
+                        nextElem.innerHTML = `Ujian Selanjutnya: <b style="color:#10b981;">${nextItem.matkul}</b>. Persiapkan diri Anda! 🔥`;
                     } else {
-                        nextElem.innerHTML = `<b>Tolong Jaga Kesehatan Anda</b>`;
+                        nextElem.innerHTML = `<b style="color:#10b981;">Tolong Jaga Kesehatan Anda</b>`;
                     }
-                    alertBox.style.background = "#ecfdf5";
-                    alertBox.style.borderColor = "#10b981";
-                    iconElem.innerText = "✅";
                 } else {
-                    let currentNames = matching.map(m => `<b style="color:#1e3a8a; font-size:14px;">${m.matkul}</b><br>(${m.jam})`).join("<br>");
+                    let currentNames = matching.map(m => `<b>${m.matkul}</b> (${m.jam})`).join("<br>");
                     textElem.innerHTML = currentNames;
                     nextElem.innerHTML = "";
-                    alertBox.style.background = "#fffbeb";
-                    alertBox.style.borderColor = "#fef3c7";
-                    iconElem.innerText = "📖";
                 }
             } else {
                 textElem.innerText = "Tidak ada jadwal ujian hari ini.";
                 nextElem.innerText = "";
-                alertBox.style.background = "#f8fafc";
-                alertBox.style.borderColor = "#cbd5e1";
-                iconElem.innerText = "📖";
             }
         });
     }
