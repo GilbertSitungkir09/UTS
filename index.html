@@ -54,10 +54,13 @@
         .subject-cell { font-weight: 700; color: #2563eb; background: var(--white); }
         body.dark-mode .subject-cell { color: #60a5fa; }
 
-        .motivation-box { text-align: center; margin-top: 40px; padding: 25px; border-radius: 20px; background: var(--white); border: 1px solid var(--border-color); }
+        .motivation-box { text-align: center; margin-top: 40px; padding: 25px; border-radius: 20px; background: var(--white); border: 1px solid var(--border-color); margin-bottom: 20px; }
+        .dedication-text { color: var(--sub-text); font-size: 12px; margin-bottom: 15px; display: block; }
         .quote-text { font-weight: 800; color: #2563eb; font-size: 14px; display: block; margin-bottom: 15px; }
-        .health-text { color: #10b981; font-size: 13px; font-weight: 700; background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; display: inline-block; margin-top: 5px; }
-        .footer { padding-bottom: 80px; }
+        body.dark-mode .quote-text { color: #60a5fa; }
+        .health-text { color: #10b981; font-size: 13px; font-weight: 700; background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; display: inline-block; margin-top: 5px; line-height: 1.5; }
+
+        .footer { padding-bottom: 100px; text-align: center; font-size: 10px; color: var(--sub-text); }
     </style>
 </head>
 <body>
@@ -143,15 +146,23 @@
     </div>
 
     <div class="motivation-box">
+        <span class="dedication-text">
+            Web ini didedikasikan untuk teman-teman FH UHN agar tidak ada lagi cerita ketinggalan ujian karena salah lihat jadwal. Semoga portal ini membantu kita Semua.
+        </span>
         <span class="quote-text">"Hasil tidak akan mengkhianati usaha. Selamat berjuang di UTS, kerjakan dengan jujur dan berikan yang terbaik. GOOD LUCK🥰🥰🥰"</span>
-        <div class="health-text">Tolong Jaga Kesehatan Anda</div>
+        <div class="health-text">
+            Ingat, kesehatan adalah hak asasi yang paling mendasar bagi tubuhmu. Jaga kesehatan karena kesehatan adalah prioritas No. 1! Tolong Jaga Kesehatan Anda, Jangan Lupa Minum Air Putih!
+        </div>
+
         <div class="ad-container">
             <script async="async" data-cfasync="false" src="https://ferocitycandour.com/d0335f1a099b9842202fbcf0493e76cc/invoke.js"></script>
             <div id="container-d0335f1a099b9842202fbcf0493e76cc"></div>
         </div>
     </div>
     
-    <div class="footer"></div>
+    <div class="footer">
+        <p>© 2026 Portal Jadwal UTS FH UHN</p>
+    </div>
 </div>
 
 <script>
@@ -185,14 +196,14 @@
         ],
         sem4: [
             { tgl: "Senin, 27 April 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Hukum Waris Islam" },
-            { tgl: "Selasa, 28 April 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Kriminologi dan Viktimologi" },
+            { tgl: "Selasa, 28 April 2026", jam: "10:20 – 12.00", start: "10:20", end: "12:00", matkul: "Kriminologi dan Viktimologi" },
             { tgl: "Rabu, 29 April 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Hukum Cyber" },
             { tgl: "Kamis, 30 April 2026", jam: "08:20 – 10:00", start: "08:20", end: "10:00", matkul: "Hukum Konservasi" },
             { tgl: "Sabtu, 2 Mei 2026", jam: "08:20 – 10:00", start: "08:20", end: "10:00", matkul: "Hukum Ketenagakerjaan dan PHI" },
             { tgl: "Senin, 4 Mei 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Hukum Perdata Internasional" },
             { tgl: "Selasa, 5 Mei 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Hukum Kepailitan dan Peradilan Niaga" },
             { tgl: "Rabu, 6 Mei 2026", jam: "08:20 – 10:00", start: "08:20", end: "10:00", matkul: "Hukum Lembaga Pembiayaan" },
-            { tgl: "Rabu, 6 Mei 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Hukum Perusahaan" },
+            { tgl: "Rabu, 6 Mei 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Hukum Perusahaan" },
             { tgl: "Kamis, 7 Mei 2026", jam: "08:20 – 10:00", start: "08:20", end: "10:00", matkul: "Hukum Perdamaian Penyelesaian Sengketa" },
             { tgl: "Kamis, 7 Mei 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Hukum Internasional" }
         ],
@@ -202,8 +213,8 @@
             { tgl: "Rabu, 29 April 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Hukum Acara Peradilan Tata Usaha Negara" },
             { tgl: "Kamis, 30 April 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Hukum Perjanjian / Kontrak" },
             { tgl: "Sabtu, 2 Mei 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Legal Opinion dan Audit Hukum" },
-            { tgl: "Senin, 4 Mei 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Hukum Pidana Militer & Peradilan Militer" },
-            { tgl: "Selasa, 5 Mei 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Filsafat Hukum" },
+            { tgl: "Senin, 4 Mei 2026", jam: "10.20 – 12:00", start: "10:20", end: "12:00", matkul: "Hukum Pidana Militer & Peradilan Militer" },
+            { tgl: "Selasa, 5 Mei 2026", jam: "14.30 – 16.10", start: "14:30", end: "16:10", matkul: "Filsafat Hukum" },
             { tgl: "Rabu, 6 Mei 2026", jam: "16:20 – 18:00", start: "16:20", end: "18:00", matkul: "Hukum Acara Mahkamah Konstitusi" },
             { tgl: "Kamis, 7 Mei 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Kepemimpinan dan Kewirausahaan" }
         ]
