@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="referrer" content="always">
+    
+    <meta name="google-site-verification" content="4RT4GOZrVLC98ABh4S9t-T4xJq6YH_ULtCk_defmVv0" />
+    
+    <meta name="description" content="Jadwal UTS FH UHN 2026. Cek jadwal semester 2, 4, dan 6 lengkap dengan hitung mundur otomatis dan checklist persiapan.">
+    <meta name="keywords" content="Jadwal UTS FH UHN, Fakultas Hukum Nommensen, Nommensen Medan, Jadwal Ujian Hukum">
+    
     <title>Jadwal UTS FH UHN</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -33,7 +39,6 @@
 
         .nb-header { background: linear-gradient(90deg, #facc15 0%, #ef4444 100%); color: white; padding: 15px; border-radius: 12px; font-size: 11px; font-weight: 800; margin: 25px auto; text-align: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3); }
 
-        /* CHECKLIST STYLE */
         .checklist-card { background: var(--white); border: 1px solid var(--border-color); border-radius: 15px; padding: 20px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .checklist-title { font-size: 14px; font-weight: 800; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
         .checklist-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--border-color); cursor: pointer; }
@@ -242,7 +247,7 @@
         ],
         sem4: [
             { tgl: "Senin, 27 April 2026", jam: "14:30 – 16:10", start: "14:30", end: "16:10", matkul: "Hukum Waris Islam" },
-            { tgl: "Selasa, 28 April 2026", jam: "10:20 – 12.00", start: "10:20", end: "12:00", matkul: "Kriminologi dan Viktimologi" },
+            { tgl: "Selasa, 28 April 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Kriminologi dan Viktimologi" },
             { tgl: "Rabu, 29 April 2026", jam: "10:20 – 12:00", start: "10:20", end: "12:00", matkul: "Hukum Cyber" },
             { tgl: "Kamis, 30 April 2026", jam: "08:20 – 10:00", start: "08:20", end: "10:00", matkul: "Hukum Konservasi" },
             { tgl: "Sabtu, 2 Mei 2026", jam: "08:20 – 10:00", start: "08:20", end: "10:00", matkul: "Hukum Ketenagakerjaan dan PHI" },
@@ -363,7 +368,7 @@
     window.onload = () => { 
         renderTabel(); 
         checkWIB(); 
-        loadChecklist(); // Memuat status centang saat halaman dibuka
+        loadChecklist(); 
         setInterval(checkWIB, 1000); 
     };
 </script>
